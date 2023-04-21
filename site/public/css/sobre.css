@@ -216,3 +216,20 @@
     
     
   }
+
+  .banner{
+    background-color:  #FFD900;
+    background-size: cover;
+    }
+    
+.banner .container{
+    height: 580px;
+    display: flex;
+   
+    color: white;
+    align-items: center;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    
+}

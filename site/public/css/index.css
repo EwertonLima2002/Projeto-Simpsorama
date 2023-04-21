@@ -216,3 +216,86 @@
     
     
   }
+
+  .banner{
+    background-image: url(../assents/Banner.png);
+    background-size: cover;
+    }
+    
+.banner .container{
+    height: 580px;
+    display: flex;
+   
+    color: white;
+    align-items: center;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    
+}
+#textosimpsons{
+    width: 350px;
+      position: absolute;
+      top: 105%;
+      left: 40%;
+      margin: -25px 0 0 -25px;
+    }
+
+    .animacao{
+        width: 100%;
+        height: 500px;
+        background: linear-gradient(-30deg, #0e78db , #010e1b );
+        position: absolute;
+    }
+    .tv_simpsons{
+        position: absolute;
+       left: 30%;
+       top: 20%;
+        width: 500px;
+    
+
+    }
+    .video{
+        width: 410px;
+        position: absolute;
+        left: 450px;
+        top: 141px;
+        border-radius: 7px;
+    }
+  
+.whatsapp-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+    display: block;
+    width: 60px;
+    height: 60px;
+    background-color: #25d366;
+    border-radius: 50%;
+    text-align: center;
+    box-shadow: 2px 2px 3px #999;
+  }
+  
+  .whatsapp-btn img {
+    width: 40px;
+    height: auto;
+    margin-top: 10px;
+  }
+  
+ 
+  @keyframes blink {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  .whatsapp-btn.blink {
+    animation: blink 1s ease-in-out infinite;
+  }
