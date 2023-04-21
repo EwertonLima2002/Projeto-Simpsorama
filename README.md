@@ -1,4 +1,4 @@
-# Site Individual - Simpsons <img src="https://nerdreactor.com/wp-content/uploads/2013/10/Simpsons-logo.jpg" width="30">  
+# Site Individual - Simpsons <img src="https://nerdreactor.com/wp-content/uploads/2013/10/Simpsons-logo.jpg" width="50">  
 
 Este site é baseado no tema simspsons, uma série animada americana que faz parte da vida grande parte da população. Tema escolhido por mim para dissertar/apresentar sobre a minha série favorita e para treinar minhas habilidades de programação front-end e back-end.
 
