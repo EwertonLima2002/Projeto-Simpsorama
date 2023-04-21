@@ -299,3 +299,31 @@
   .whatsapp-btn.blink {
     animation: blink 1s ease-in-out infinite;
   }
+  .bola_de_neve{
+    width: 300px;
+    float: right;
+    position: absolute;
+    right: 50px;
+    top: 150px;
+  }
+  .bart_simpson{
+    position: absolute;
+    top: 2px;
+    left: 550px;
+    width: 220px;
+  }
+  .logo_animacao{
+    width: 300px;
+    position: absolute;
+    left: 50px;
+    top: 200px;
+    animation: bate-bate .5s alternate infinite ease-in;
+  }
+  @keyframes bate-bate {
+    0% {
+      transform: translateX(10%);
+    }
+    100% {
+      transform: translateX(-10%);
+    }
+  }

@@ -216,3 +216,137 @@
     
     
   }
+  
+.banner{
+    background:linear-gradient(45deg , #0000FF,  #00BFFF);
+    background-size: cover;
+    }
+    
+  .banner .container {
+    height: 550px;
+    display: flex;
+    color: white;
+    align-items: center;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    
+  }
+  #imghomer{
+    position: absolute;
+    right: 10px;
+    animation: flutuar .5s ease-in-out;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+  }
+  #imgmarge{
+    position: absolute;
+    right: 10px;
+    top: 720px;
+    animation: flutuar .5s ease-in-out;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+  }
+  #imglisa{
+    position: absolute;
+    right: 10px;
+    top: 1350px;
+    width: 200px;
+    animation: flutuar .5s ease-in-out;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+  }
+  #imgbart{
+    position: absolute;
+    right: 10px;
+    top: 1920px;
+    animation: flutuar .5s ease-in-out;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+  }
+  #imgmaggie{
+    position: absolute;
+    right: 10px;
+    top: 2400px;
+    animation: flutuar .5s ease-in-out;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+  }
+  .texto{
+    position:absolute;
+    top:750px;
+    color: #ffff;
+    font-family: 'Raleway', sans-serif;
+  }
+  .marge{
+    width: 100%;
+    height: 550px;
+    background:linear-gradient(-45deg , #FFA500, #B8860B);
+    
+  }
+  .div_lisa{
+    width: 100%;
+    height: 550px;
+    background:linear-gradient(-45deg , 	#8B008B, #E73C7E);
+  }
+.div_bart{
+    width: 100%;
+    height: 550px;
+    background:  linear-gradient(-45deg  ,  	#ADFF2F ,#00FF00);
+}
+.div_maggie{
+    width: 100%;
+    height: 550px;
+    background:linear-gradient(-45deg , 	#C71585, #FF1493);
+}
+@keyframes flutuar{
+    0% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-20px);
+      }
+      100% {
+        transform: translateY(0px);
+      }
+}
+.texto_homer{
+    color: #ffff;
+    font-family: 'Raleway', sans-serif;
+    position: absolute;
+    top: 80px;
+    left: 20px;
+}
+.texto_marge{
+    color: #ffff;
+    font-family: 'Raleway', sans-serif;
+    position: absolute;
+    top: 620px;
+    left: 20px;
+}
+.texto_lisa{
+    color: #ffff;
+    font-family: 'Raleway', sans-serif;
+    position: absolute;
+    left: 20px;
+    top:1180px
+}
+.texto_bart{
+    position: absolute;
+    color: #ffff;
+    font-family: 'Raleway', sans-serif;
+    left: 20px;
+    top:1720px
+}
+.texto_maggie{
+    position: absolute;
+    color: #ffff;
+    font-family: 'Raleway', sans-serif;
+    left: 20px;
+    top:2280px
+}

@@ -4,6 +4,7 @@
     box-sizing: border-box;
     font-family: 'Lato', 'Arial', sans-serif;
   }
+  
   #game{
     margin: 12px;
   }
@@ -232,4 +233,44 @@
     align-items: center;
     text-decoration: none;
     
+}
+.img_ewerton{
+    position: absolute;
+    right: 400px;
+    width: 250px;
+    border-radius: 20px;
+    animation: flutuar .5s ease-in-out;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+}
+@keyframes flutuar{
+    0% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-20px);
+      }
+      100% {
+        transform: translateY(0px);
+      }
+}
+.card_sobre_mim{
+    width: 450px;
+    height: 500px;
+    background-color: #fff;
+    border-radius: 20px;
+    position: absolute;
+    left: 50px;
+}
+.card_sobre_mim h2{
+    font-family: 'Raleway', sans-serif;
+    color: #dbdf00;
+    font-size: 25px;
+   
+}
+.familia_simpsons{
+    width: 200px;
+    position: absolute;
+    right: 20px;
 }
