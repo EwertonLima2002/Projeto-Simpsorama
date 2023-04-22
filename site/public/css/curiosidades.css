@@ -7,7 +7,27 @@
   #game{
     margin: 12px;
   }
-  /* HEADINGS */
+  /* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px #fff; 
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(-45deg, #ffee00, #beee10);
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(-45deg, #ffee00,  #beee10);
+}
   
   
   
@@ -277,11 +297,46 @@
     animation-iteration-count: infinite;
     animation-timing-function: ease-in-out;
   }
+  .curiosidades_homer{
+    position:absolute;
+    top:140px;
+    left: 8px;
+    color: #ffff;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: 100;
+
+  }
   .texto{
     position:absolute;
-    top:750px;
+    top:720px;
     color: #ffff;
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: 100;
+    left: 8px;
+  }
+  .curiosidades_lisa{
+    position:absolute;
+    top:1280px;
+    color: #ffff;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: 100;
+    left: 8px;
+  }
+  .curiosidades_bart{
+    position:absolute;
+    top:1780px;
+    color: #ffff;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: 100;
+    left: 8px;
+  }
+  .curiosidades_maggie{
+    position:absolute;
+    top:2350px;
+    color: #ffff;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: 100;
+    left: 8px;
   }
   .marge{
     width: 100%;
@@ -297,7 +352,7 @@
 .div_bart{
     width: 100%;
     height: 550px;
-    background:  linear-gradient(-45deg  ,  	#ADFF2F ,#00FF00);
+    background:  linear-gradient(-45deg  ,  	#7cc70b ,#00FF00);
 }
 .div_maggie{
     width: 100%;
@@ -326,7 +381,7 @@
     color: #ffff;
     font-family: 'Raleway', sans-serif;
     position: absolute;
-    top: 620px;
+    top: 640px;
     left: 20px;
 }
 .texto_lisa{
@@ -334,7 +389,7 @@
     font-family: 'Raleway', sans-serif;
     position: absolute;
     left: 20px;
-    top:1180px
+    top:1200px
 }
 .texto_bart{
     position: absolute;
