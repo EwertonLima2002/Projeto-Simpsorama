@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Simpsorama</title>
     <link rel="stylesheet" href="../css/dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <div class="banner">
@@ -374,5 +375,69 @@
     </div>
     </div>    
     <h1 class="texto_votacao">Votação dos Personagens</h1>
+          
+<div class="votos_homer_simpson">
+    <h3>Homer Simpson</h3>
+    <p>09 Votos</p>
+    </div>
+    <div class="votos_lisa_simpson">
+        <h3>Lisa Simpson</h3>
+        <p>19 Votos</p>
+        </div>
+        <div class="votos_marge_simpson">
+            <h3>Marge Simpson</h3>
+            <p>15 Votos</p>
+            </div>
+            <div class="votos_bart_simpson">
+                <h3>Bart Simpson</h3>
+                <p>15 Votos</p>
+                </div>
+                <div class="votos_maggie_simpson">
+                    <h3>Maggie Simpson</h3>
+                    <p>15 Votos</p>
+                    </div>
+<div class="grafico">
+                    <canvas id="myChart" width="1000px" height="250px" class="canvas"></canvas>
+                </div>
+</div>
+
+<script>
+const ctx = document.getElementById('myChart').getContext('2d');
+const myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: ['Lisa','Homer',  'Marge', 'Bart', 'Maggie', ],
+        datasets: [{
+            label: 'Total de Votos',
+            data: [15, 29, 3, 15, 2, 13],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+</script>
+          
 </body>
 </html>
