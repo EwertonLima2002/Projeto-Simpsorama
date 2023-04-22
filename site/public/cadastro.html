@@ -7,6 +7,7 @@
     <title>Cadastro Simpsorama</title>
     <link rel="stylesheet" href="css/cadastro.css">
     <link rel="stylesheet" href="js/funcao_gliter.js">
+    <script src="js/cadastro.js"></script>
 </head>
 <body>
     <div class="page-wrapper">
@@ -41,19 +42,19 @@
                   <h2>Cadastro</h2>
                   <div class="form_group">
                     <label for="email" class="sub_title" id="n1">Nome</label>
-                    <input type="text" class="form_style" id="email_usuario" onkeyup="validar_email()">
-                    <span class="span_erro"></span>
+                    <input type="text" class="form_style" id="input_nome" onkeyup="validar_nome()">
+                    <span  id="span_erro_nome"></span>
                   </div>
                   <div class="form_group">
                     <label for="email" class="sub_title" id="n1">Email</label>
                     <input type="text" class="form_style" id="email_usuario" onkeyup="validar_email()">
-                    <span class="span_erro"></span>
+                    <span id="span_erro_email"></span>
                     
                   </div>
                   <div class="form_group">
                     <label for="email" class="sub_title" id="n1">Senha</label>
-                    <input type="text" class="form_style" id="email_usuario" onkeyup="validar_email()">
-                    <span class="span_erro"></span>
+                    <input type="text" class="form_style" id="senha_usuario" onkeyup="validar_senha()">
+                    <span id="span_erro_senha" ></span>
                     
                   </div>
 

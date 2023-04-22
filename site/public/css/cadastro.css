@@ -236,7 +236,7 @@
 
 .login{
   width: 400px;
-  height: 490px;
+  height: 520px;
   background-color: #fff;
   border-radius: 15px;
 }
@@ -309,7 +309,7 @@ select {
 }
 .img_cadastro{
   position: absolute;
-  top: 129px;
+  top: 110px;
   left: 500px;
   width: 70px;
 }

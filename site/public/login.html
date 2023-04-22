@@ -7,6 +7,7 @@
     <title>Login Simpsorama</title>
     <link rel="stylesheet" href="css/login.css">
     <link rel="stylesheet" href="js/funcao_gliter.js">
+    <script src="js/login.js"></script>
     
 </head>
 <body>
@@ -42,17 +43,17 @@
                 <div class="form_group">
                   <label for="email" class="sub_title" id="n1">Email</label>
                   <input type="text" class="form_style" id="email_usuario" onkeyup="validar_email()">
-                  <span class="span_erro"></span>
+                  <span id="span_erro_email"></span>
                 </div>
                 <div class="form_group">
                   <label for="email" class="sub_title" id="n1">Senha</label>
-                  <input type="text" class="form_style" id="email_usuario" onkeyup="validar_email()">
-                  <span class="span_erro"></span>
+                  <input type="text" class="form_style" id="senha_usuario" onkeyup="validar_senha()">
+                  <span id="span_erro_senha"></span>
                 </div>
                 <button class="btn" onclick="login()" id="btn">
                   <h3 id="texto">Entrar</h3>
                 </button>
-                <h4 class="sem_cadastro">Não possui cadastro? <a href="cadastro.html"> Clique Aqui</a></h4>
+                <h4 class="sem_cadastro" id="sem_cadastro">Não possui cadastro? <a href="cadastro.html"> Clique Aqui</a></h4>
               </div>
             </div>
                 </div>
