@@ -233,3 +233,83 @@
     text-decoration: none;
     
 }
+.login{
+  width: 400px;
+  height: 380px;
+  background-color: #fff;
+  border-radius: 15px;
+}
+.form{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 500px;
+}
+.login h2{
+  color: #FFA500;
+  font-size: 30px;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-weight: 200;
+}
+.title{
+  color: #FF8C00;
+  font-weight: 900;
+  font-size: 1.5em;
+  margin-top: 20px;
+}
+.sub_title{
+  font-weight: 600;
+  margin: 5px 0;
+  color: #000;
+  
+}
+.form_group{
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  margin: 20px;
+}
+.form_style{
+  outline: none;
+  border: 2px solid #000;
+  box-shadow: 3px 4px 0px 1px #000;
+  width: 350px;
+  padding: 12px 10px;
+  border-radius: 4px;
+  font-size: 15px;
+}
+.form_style:focus{
+  transform: translateY(4px);
+  box-shadow: 1px 2px 0px 0px #000;
+}
+.btn{
+  padding: 15px;
+  margin: 30px 40px;
+  width: 310px;
+  font-size: 15px;
+  background: linear-gradient(-45deg, #FF8C00 ,  #FFFF00, 	#FFD700, #FFA500);
+  border-radius: 30px;
+  font-weight: 800;
+  border:none;
+  font-family: Georgia, 'Times New Roman', Times, serif
+}
+.sem_cadastro{
+  color: #000;
+  font-size: 15px;
+  font-family: monospace;
+  left: 540px;
+  top: 510px;
+  position: absolute;
+}
+.sem_cadastro a{
+  text-decoration: none;
+  color: #000;
+  font-size: 15px;
+  font-family: monospace;
+}
+.img_zumbi{
+  position: absolute;
+  top: 170px;
+  width: 70px;
+}

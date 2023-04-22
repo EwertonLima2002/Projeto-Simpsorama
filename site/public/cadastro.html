@@ -7,7 +7,6 @@
     <title>Cadastro Simpsorama</title>
     <link rel="stylesheet" href="css/cadastro.css">
     <link rel="stylesheet" href="js/funcao_gliter.js">
-    <link rel="stylesheet" href="css/reset.css">
 </head>
 <body>
     <div class="page-wrapper">
@@ -25,7 +24,7 @@
               <li class="nav-item"><a href="cadastro.html">Cadastro</a></li>
               <li class="nav-item"><a href="login.html">Login</a></li>
               <li class="nav-item"><a href="sobre_mim.html">Sobre</a></li>
-              <li class="nav-item"><a href="curiosidade.html">Curiosidades</a></li>
+              <li class="nav-item"><a href="curiosidades.html">Curiosidades</a></li>
               <li class="nav-item"><a href="Calculdora_Simpsorama.html" id="game">Calculadora</a></li>
     
             </ul>
@@ -35,8 +34,47 @@
 
         <div class="banner">
             <div class="container">
-              <h1 class="texto_simpsons">
-                <div id="text" class="text">
+              <div class="form">
+                <div class="login">
+                  <img src="assents/Icon.svg" class="img_cadastro">
+              
+                  <h2>Cadastro</h2>
+                  <div class="form_group">
+                    <label for="email" class="sub_title" id="n1">Nome</label>
+                    <input type="text" class="form_style" id="email_usuario" onkeyup="validar_email()">
+                    <span class="span_erro"></span>
+                  </div>
+                  <div class="form_group">
+                    <label for="email" class="sub_title" id="n1">Email</label>
+                    <input type="text" class="form_style" id="email_usuario" onkeyup="validar_email()">
+                    <span class="span_erro"></span>
+                    
+                  </div>
+                  <div class="form_group">
+                    <label for="email" class="sub_title" id="n1">Senha</label>
+                    <input type="text" class="form_style" id="email_usuario" onkeyup="validar_email()">
+                    <span class="span_erro"></span>
+                    
+                  </div>
+
+                  <div class="form_group">
+                    <label for="password" class="sub_title" id="personagens_usuario">Personagem Favorito</label>
+                    <select id="">
+                      <option value="">Bart Simpson</option>
+                      <option value="">Lisa Simpson</option>
+                      <option value="">Maggie Simpson</option>
+                      <option value="">Marge Simpson</option>
+                      <option value="">Homer Simpson</option>
+                    </select>
+        
+                  </div>
+                  <div>
+                  <button class="btn" onclick="login()" id="btn">
+                    <h3 id="texto">Cadastrar</h3>
+                  </button>
+
+                </div>
+              </div>
       
                 </div>
               </h1>
