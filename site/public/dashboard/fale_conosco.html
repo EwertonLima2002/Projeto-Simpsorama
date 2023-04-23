@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fale com os Simpsons</title>
+    <link rel="icon" href="../assents/Icon.svg">
+    <link rel="stylesheet" href="../css/fale_conosco.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://kit.fontawesome.com/3f0399636b.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+   
+</head>
+<body>
+    <div class="banner">
+        <div class="navbar">
+            <div class="container">
+    
+    <aside>
+        <p>Menu</p> <div class="nome">
+            <h1>Olá Ewerton Lima</h1>
+        </div>
+        <a href="dashboard.html">
+            <i class="fa-solid fa-user-tie"></i>
+       Personagens Favoritas
+    </a>
+    <a href="previsao_tempo_simspsons.html">
+        <i class="fa-solid fa-cloud"></i>
+       Previsão do Tempo Simpsorama
+    </a>
+    
+    <a href="fale_conosco.html">
+        <i class="fa-solid fa-phone"></i>
+     Fale com os Simpsons
+    </a>
+    <a href="../index.html">
+        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+       Sair
+    </a>
+    <div class="social">
+        <a href="https://www.instagram.com/ewerton.lima.dev/" target="_blank">
+        <i class="fa-brands fa-instagram"></i>
+       
+    </a>
+    </div>  
+    </aside>
+    
+    <div class="container">
+        <h1 class="texto_mural">Mural de Avisos</h1>
+        <div class="login">
+            <form class="form">
+                <h1>Publicar um aviso</h1>
+                <div class="form_group">
+                    <label for="email" class="sub_title" id="n1">Título:</label>
+                    <input type="text" class="form_style" id="input_nome" onkeyup="validar_nome()">
+                    <span  id="span_erro_nome"></span>
+                  </div>
+                  <div class="form_group">
+                    <label for="email" class="sub_title" id="n1">Descrição (máximo de 250 caracteres):</label>
+                    <input type="text" class="form_style" id="input_nome" onkeyup="validar_nome()" style="height: 120px;">
+                    <span  id="span_erro_nome"></span>
+                  </div>
+                  <button class="btn" onclick="login()" id="btn">
+                    <h3 id="texto">Publicar</h3>
+                  </button>
+            </form>
+            
+        </div>
+      
+        <div class="mural">
+        <div class="div-results">
+        
+            <div id="feed_container" class="feed-container">
+              
+            </div>
+        </div>
+    
+    </div>
+          
+</body>
+</html>

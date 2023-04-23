@@ -41,7 +41,6 @@ function validar_senha(){
     var senha = senha_usuario.value
     var input = document.getElementById('senha_usuario')
     var span = document.getElementById('span_erro_senha')
-    var btn = document.getElementById('btn')
    
 
     if(senha.length<8){
@@ -49,8 +48,8 @@ function validar_senha(){
         span.style.color = 'red'
         span.style.fontSize = '15px'
         span.style.marginTop = '12px'
-        texto.style.display = 'none'
-        btn.style.marginTop = '2px'
+     
+ 
     }
     else{
         span.innerHTML = ''
