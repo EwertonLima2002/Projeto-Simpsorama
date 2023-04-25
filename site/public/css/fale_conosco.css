@@ -253,3 +253,9 @@ left: 230px;
     background-color: #e6005a;
     width: 120px;
   }
+  .atendimento_telefonico{
+    width: 250px;
+    position: absolute;
+    right: 10px;
+    top: 100px;
+  }
