@@ -116,10 +116,6 @@ input:checked * .slider::before{
     width: 60px;
     height: 34px;
 }
-.dark-mode{
-    background: black;
-    color: #fff;
-}
 .toggle input{
     opacity: 0;
     width: 0;
@@ -254,8 +250,8 @@ left: 230px;
     width: 120px;
   }
   .atendimento_telefonico{
-    width: 250px;
+    width: 240px;
     position: absolute;
     right: 10px;
-    top: 100px;
+    top: 50px;
   }
