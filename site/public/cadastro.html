@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="css/cadastro.css">
     <link rel="stylesheet" href="js/funcao_gliter.js">
     <script src="js/cadastro.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="js/funcoes.js"></script>
 </head>
 <body>
     <div class="page-wrapper">
@@ -60,17 +62,17 @@
 
                   <div class="form_group">
                     <label for="password" class="sub_title" id="personagens_usuario">Personagem Favorito</label>
-                    <select id="">
-                      <option value="">Bart Simpson</option>
-                      <option value="">Lisa Simpson</option>
-                      <option value="">Maggie Simpson</option>
-                      <option value="">Marge Simpson</option>
-                      <option value="">Homer Simpson</option>
+                    <select id="select_personagem">
+                      <option value="1">Bart Simpson</option>
+                      <option value="2">Lisa Simpson</option>
+                      <option value="3">Maggie Simpson</option>
+                      <option value="4">Marge Simpson</option>
+                      <option value="5">Homer Simpson</option>
                     </select>
         
                   </div>
                   <div>
-                  <button class="btn" onclick="login()" id="btn">
+                  <button class="btn" onclick="cadastrar()" id="btn">
                     <h3 id="texto">Cadastrar</h3>
                   </button>
 

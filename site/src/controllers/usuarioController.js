@@ -45,8 +45,11 @@ function entrar(req, res) {
                         res.json(resultado[0]);
                     } else if (resultado.length == 0) {
                         res.status(403).send("Email e/ou senha inválido(s)");
+                       
+                        
                     } else {
                         res.status(403).send("Mais de um usuário com o mesmo login e senha!");
+                        res.redirect("/login?mensagem=Email já cadastrado!");
                     }
                 }
             ).catch(
@@ -65,7 +68,7 @@ function cadastrar(req, res) {
     var nome = req.body.nomeServer;
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
-    var cpf = req.body.cpfServer;
+    var personagem = req.body.personagemServer;
 
     // Faça as validações dos valores
     if (nome == undefined) {
@@ -74,15 +77,12 @@ function cadastrar(req, res) {
         res.status(400).send("Seu email está undefined!");
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está undefined!");
-    } 
-    else if (cpf == undefined) {
-    res.status(400).send("seu cpf está undefined!");
-    }
-
-    else {
+    } else if (personagem == undefined) {
+        res.status(400).send("Seu personagem está undefined!");
+    }  else {
         
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrar(nome, email, senha , cpf)
+        usuarioModel.cadastrar(nome, email, senha, personagem)
             .then(
                 function (resultado) {
                     res.json(resultado);
