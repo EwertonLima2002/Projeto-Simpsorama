@@ -29,7 +29,7 @@
             <i class="fa-solid fa-user-tie"></i>
        Personagens Favoritas
     </a>
-    <a href="previsao_tempo_simspsons.html">
+    <a href="previsao_do_tempo_simpsorama.html">
         <i class="fa-solid fa-cloud"></i>
        Previsão do Tempo Simpsorama
     </a>
@@ -479,6 +479,7 @@ function plotarGrafico(resposta, idAquario) {
         dados.labels.push(registro.personagem);
         dados.datasets[0].data.push(registro.personagem);
         dados.datasets[1].data.push(registro.voto);
+        
     }
 
     console.log(JSON.stringify(dados));
@@ -540,8 +541,8 @@ function atualizarGrafico(idAquario, dados) {
                 dados.datasets[0].data.shift();  // apagar o primeiro de umidade
                 dados.datasets[0].data.push(registro.personagem); // incluir uma nova medida de umidade
                 
-                dados.datasets[1].data.shift();  // apagar o primeiro de temperatura
-                dados.datasets[1].data.push(registro.voto); // incluir uma nova medida de temperatura
+                dados.datasets[1].data.shift(); 
+                dados.datasets[1].data.push(registro.voto);
             }   
             
                 window.myChart.update();
