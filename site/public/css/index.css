@@ -285,10 +285,11 @@
 
     }
     .video{
-        width: 410px;
+        width: 413px;
+        height: 512px;
         position: absolute;
         left: 450px;
-        top: 141px;
+        top: 1px;
         border-radius: 7px;
     }
   
