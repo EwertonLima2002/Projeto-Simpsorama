@@ -10,6 +10,10 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://kit.fontawesome.com/3f0399636b.js" crossorigin="anonymous"></script>
     <script src="../js/funcoes.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="http://www.chartjs.org/dist/2.7.1/Chart.js"></script>
+    <script src="http://www.chartjs.org/samples/latest/utils.js"></script>
+    
    
 </head>
 <body>
@@ -401,47 +405,11 @@
                     <p>15 Votos</p>
                     </div>
 <div class="grafico">
-                    <canvas id="myChart" width="1000px" height="250px" class="canvas"></canvas>
+    <canvas id="myChart" width="1000px" height="250px"> </canvas>
                 </div>
 </div>
 
-<script>
-const ctx = document.getElementById('myChart').getContext('2d');
-const myChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-        labels: ['Lisa','Homer',  'Marge', 'Bart', 'Maggie', ],
-        datasets: [{
-            label: 'Total de Votos',
-            data: [15, 29, 3, 15, 2, 13],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
-        }
-    }
-});
-</script>
+
           
 </body>
 </html>
@@ -449,4 +417,147 @@ const myChart = new Chart(ctx, {
       var usuario = sessionStorage.NOME_USUARIO;
 
 b_usuario.innerHTML = " " + usuario
+
+b_usuario.innerHTML = sessionStorage.NOME_USUARIO
+
+
+
+let proximaAtualizacao;
+
+window.onload = obterDadosGrafico(1);
+
+
+function obterDadosGrafico(idAquario) {
+
+    if (proximaAtualizacao != undefined) {
+        clearTimeout(proximaAtualizacao);
+    }
+
+    fetch(`/medidas/ultimas/${idAquario}`, { cache: 'no-store' }).then(function (response) {
+        if (response.ok) {
+            response.json().then(function (resposta) {
+                console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                plotarGrafico(resposta, idAquario);
+            });
+        } else {
+            console.error('Nenhum dado encontrado ou erro na API');
+        }
+    })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        });
+}
+
+// Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
+// Configura o gráfico (cores, tipo, etc), materializa-o na página e, 
+// A função *plotarGrafico* também invoca a função *atualizarGrafico*
+function plotarGrafico(resposta, idAquario) {
+    console.log('iniciando plotagem do gráfico...');
+
+    var dados = {
+        labels: [],
+        datasets: [
+            {
+                label: '',
+                backgroundColor: '#ffffff',
+                borderColor: '#ffffff',
+                data: []
+            },
+            {
+                yAxisID: 'y-totalpersonagens',
+                label: 'Personagem Favorito',
+                borderColor: '#FFF',
+                backgroundColor:  [ 'rgb(255, 99, 132)', 'rgb(54, 162, 235)', 'rgb(255, 205, 86)', 'rgb(139,0,139)', 'rgb(255,255,0)', 'rgb(255,0,0)', 'rgb(0,255,0)',],
+                fill: true,
+                data: []
+            }
+        ]
+    };
+
+    for (i = 0; i < resposta.length; i++) {
+        var registro = resposta[i];
+        dados.labels.push(registro.personagem);
+        dados.datasets[0].data.push(registro.personagem);
+        dados.datasets[1].data.push(registro.voto);
+    }
+
+    console.log(JSON.stringify(dados));
+
+    var ctx = myChart.getContext('2d');
+    window.myChart = Chart.Bar(ctx, {
+        data: dados,
+        options: {
+            responsive: true,
+            animation: { duration: 500 },
+            hoverMode: 'index',
+            stacked: false,
+            title: {
+                display: true,
+                text: 'Os Personagens mais Escolhidos'
+            },
+            scales: {
+                yAxes: [{
+                    type: 'linear',
+                    display: true,
+                    position: 'left',
+                    id: 'y-totalpersonagens',
+                    ticks: {
+                        beginAtZero: true,
+                        max: 50,
+                        min: 0
+                    }
+                }, {
+                    display: false,
+                }],
+            }
+        }
+    });
+
+  setInterval(atualizarGrafico(idAquario, dados), 4000);
+}
+
+
+// Esta função *atualizarGrafico* atualiza o gráfico que foi renderizado na página,
+// buscando a última medida inserida em tabela contendo as capturas, 
+
+//     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
+//     Para ajustar o "select", ajuste o comando sql em src/models
+function atualizarGrafico(idAquario, dados) {
+
+    fetch(`/medidas/tempo-real/${idAquario}`, { cache: 'no-store' }).then(function (response) {
+        if (response.ok) {
+            response.json().then(function (novoRegistro) {
+
+                console.log(`Dados recebidos Atualizar  Graficos: ${JSON.stringify(novoRegistro)}`);
+                console.log(dados);
+
+            for (i = 0; i < novoRegistro.length; i++) {
+                var registro = novoRegistro[i];
+                // tirando e colocando valores no gráfico
+                dados.labels.shift(); // apagar o primeiro
+                dados.labels.push(registro.personagem);// incluir um novo momento
+                
+                dados.datasets[0].data.shift();  // apagar o primeiro de umidade
+                dados.datasets[0].data.push(registro.personagem); // incluir uma nova medida de umidade
+                
+                dados.datasets[1].data.shift();  // apagar o primeiro de temperatura
+                dados.datasets[1].data.push(registro.voto); // incluir uma nova medida de temperatura
+            }   
+            
+                window.myChart.update();
+
+                // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+                proximaAtualizacao = setTimeout(() => atualizarGrafico(idAquario, dados), 2000);
+            });
+        } else {
+            console.error('Nenhum dado encontrado ou erro na API');
+            // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+            proximaAtualizacao = setTimeout(() => atualizarGrafico(idAquario, dados), 200000);
+        }
+    })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        });
+
+}
 </script>
