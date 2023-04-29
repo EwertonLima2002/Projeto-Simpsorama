@@ -5,33 +5,38 @@
 /*
 comandos para mysql - banco local - ambiente de desenvolvimento
 */
+create database simpsorama;
+use simpsorama;
 
-CREATE DATABASE aquatech;
--- DROP DATABASE aquatech;
-USE aquatech;
-
-CREATE TABLE usuario (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	nome VARCHAR(50),
-	email VARCHAR(50),
-	senha VARCHAR(50),
-    cep CHAR(8),
-    cnpj CHAR(14)
+create table personagem(
+idpersonagem int primary key auto_increment,
+nome varchar(45)
 );
 
-CREATE TABLE aviso (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	titulo VARCHAR(100),
-	descricao VARCHAR(150),
-	fk_usuario INT,
-	FOREIGN KEY (fk_usuario) REFERENCES usuario(id)
+create table usuario(
+idusuario int primary key auto_increment,
+nome varchar(100),
+email varchar(100),
+senha varchar(50),
+fkpersonagem int,
+foreign key(fkpersonagem) references personagem(idpersonagem)
 );
 
-create table aquario (
-/* em nossa regra de negócio, um aquario tem apenas um sensor */
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	descricao VARCHAR(300)
+create table aviso(
+idaviso int primary key auto_increment,
+titulo varchar(45),
+descricao varchar(250),
+fkusuario int,
+foreign key(fkusuario) references usuario(idusuario)
 );
+
+insert into personagem values
+(null , 'Bart'),
+(null , 'Lisa'),
+(null , 'Maggie'),
+(null , 'Marge'),
+(null , 'Homer');
+
 
 /* esta tabela deve estar de acordo com o que está em INSERT de sua API do arduino - dat-acqu-ino */
 
