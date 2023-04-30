@@ -58,6 +58,7 @@ function validar_senha(){
         span.style.marginTop = '12px'
         input.style.marginTop = '15px'
         btn.style.display = 'block'
+        btn.style.marginTop = '10px'
       
         
     }

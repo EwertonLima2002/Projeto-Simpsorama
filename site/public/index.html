@@ -38,10 +38,9 @@
 
         <div class="banner">
             <div class="container">
-              <h1>
-                <div id="text" class="text">
-      
-                </div>
+              <span class="mensagem">
+                A Persistência é o Caminho do Êxito
+              </span>
               </h1>
             </div>
           </div>
@@ -113,7 +112,7 @@
         <li><a href="login.html">Login</a></li>
         <li><a href="sobre_mim.html">Sobre</a></li>
         <li><a href="curiosidades.html">Curiosidades</a></li>
-        <li><a href="matematica_simpsorama.html">Calculadora</a></li>
+        <li><a href="quiz_simpsorama.html">Quiz</a></li>
       </div>
       <div class="redes">
         <span>Redes Sociais:</span>
@@ -138,26 +137,7 @@
     function travar(){
         video.pause()
     }
-    var el = document.querySelector("#text");
-  var text = "A Persistência é o Caminho do Êxito."
-  var interval = 200;
-  function showtext(el, text, interval , infinit) {
-    var char = text.split("").reverse();
-
-    var typer = setInterval(function () {
-
-      if (!char.length) {
-        return clearInterval(typer)
-      }
-
-      var next = char.pop();
-
-      el.innerHTML += next;
-
-    }, interval , infinit);
-
-  }
-  showtext(el, text, interval);
+   
   setInterval(function() {
   var whatsappBtn = document.querySelector('.whatsapp-btn');
   whatsappBtn.classList.toggle('blink');

@@ -249,11 +249,11 @@
     height: 580px;
     display: flex;
    
-    color: white;
+
     align-items: center;
     justify-content: center;
     align-items: center;
-    text-decoration: none;
+  
     
 }
 #textosimpsons{
@@ -649,4 +649,37 @@
     -o-transform: scale(1.1);
     -ms-transform: scale(1.1);
     transform: scale(1.1);
+}
+.mensagem{
+  display: inline-block;
+  width: 340px;
+  animation: digitando 8s steps(35) forwards, blink .4s infinite alternate;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 2px solid;
+  color: #fff;
+  height: 50px;
+  font-family: sans-serif;
+  font-size: 35px;
+  font-weight: 100;
+}
+
+
+
+@keyframes digitando{
+  0%{
+    width: 0;
+
+  }
+  100%{
+    width: 570px;
+    border-right-color: transparent;
+
+  }
+}
+
+@keyframes blink{
+  40%{
+    border-color: rgba(255, 255, 255, 0.2);
+  }
 }
