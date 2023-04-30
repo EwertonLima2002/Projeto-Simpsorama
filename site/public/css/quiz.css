@@ -216,3 +216,47 @@
     
     
   }
+  
+
+  .banner{
+    background: linear-gradient(-40deg , #009af3 , #015c91);
+    background-size: cover;
+    }
+    
+.banner .container{
+    height: 600px;
+    display: flex;
+   
+    color: white;
+    align-items: center;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    
+}
+.container h1{
+  margin-top: -400px;
+  text-align: center;
+  color: #e7ff14;
+  font-size: 45px;
+  font-weight: 100;
+  font-family:Arial, Helvetica, sans-serif;
+}
+.gif_homer{
+  position: absolute;
+  left: 20px;
+  width: 350px;
+}
+.git_homer_dog{
+  position: absolute;
+  right: 20px;
+  width: 250px;
+}
+.quiz{
+  width: 430px;
+  height: 400px;
+  border-radius: 10px;
+  background-color: #fff;
+  position: absolute;
+  top: 220px;
+}
