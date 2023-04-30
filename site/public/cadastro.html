@@ -81,7 +81,21 @@
       
                 </div>
               </h1>
+              <button onclick="ligar()">Ligar</button>
+              <div style="display: none;">
+                <audio controls id="musica">
+                  <source src="assents/Homer - D´OH(MP3_320K).mp3" type="audio/mpeg">
+                 
+                </audio>
+              </div>
             </div>
           </div>
 </body>
 </html>
+<script>
+  var mymusica = document.getElementById('musica')
+
+function ligar(){
+  mymusica.play()
+}
+</script>

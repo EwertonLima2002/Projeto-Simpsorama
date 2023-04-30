@@ -1,3 +1,4 @@
+var mymusica = document.getElementById('musica')
 function validar_nome() {
     var nome = input_nome.value
     var input = document.getElementById('input_nome')
@@ -56,6 +57,7 @@ function validar_senha() {
 
     }
 }
+
 function cadastrar() {
     //aguardar();
 
@@ -69,18 +71,22 @@ function cadastrar() {
     if (nomeVar == "" || emailVar == "" || senhaVar == "" || personagemVar <= 0) {
         //cardErro.style.display = "block"
         swal("Ops", "Preencha todos os campos", "error")
+        mymusica.play()
 
         finalizarAguardar();
         return false;
     }
     else if (nomeVar.length < 3) {
         swal("Ops", "O nome inserido é muito curto. Por favor, insira um nome com pelo menos 3 caracteres", "warning")
+        mymusica.play()
     }
     else if (emailVar.indexOf("@") == -1 || emailVar.indexOf(".com") == -1 || emailVar.length < 7) {
         swal("Ops", "O e-mail cadastrado é inválido. Por favor, insira um e-mail válido.", "warning")
+        mymusica.play()
     }
     else if (senhaVar.length < 8) {
         swal("Ops", "A senha inserida é muito curta. Por favor,insira uma senha com pelo menos 8 caracteres.", "warning")
+        mymusica.play()
     }
     else {
         setInterval('oi', 5000)
