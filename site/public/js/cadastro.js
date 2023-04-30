@@ -2,58 +2,90 @@ var mymusica = document.getElementById('musica')
 function validar_nome() {
     var nome = input_nome.value
     var input = document.getElementById('input_nome')
-    var span = document.getElementById('span_erro_nome')
+    var span = document.getElementById('campo_nome')
     var btn = document.getElementById('btn')
 
     if (nome == "") {
-        span.innerHTML = "Campo vazio"
+        span_erro_nome.innerHTML = "Campo vazio"
+        input.style.borderColor = 'red'
+        span.style.color = 'red'
+        span_erro_nome.style.color = 'red'
+        span_erro_nome.style.marginTop = '15px'
         span.style.color = 'red'
         span.style.fontSize = '15px'
+        span.style.marginTop = '12px'
         btn.style.marginTop = '2px'
     }
     else if (nome.length < 3) {
-        span.innerHTML = "Oops! Parece que seu texto é muito curto."
+        span_erro_nome.innerHTML = "Oops! Parece que seu texto é muito curto."
+        input.style.borderColor = 'red'
+        span.style.color = 'red'
+        span_erro_nome.style.color = 'red'
+        span_erro_nome.style.marginTop = '15px'
         span.style.color = 'red'
         span.style.fontSize = '15px'
         span.style.marginTop = '12px'
         btn.style.marginTop = '2px'
     }
     else {
-        span.innerHTML = ""
+        span_erro_nome.innerHTML = ''
+        input.style.borderColor = 'green'
+        span.style.color = 'green'
+        span.style.fontSize = '15px'
+        span.style.marginTop = '12px'
     }
 }
 function validar_email() {
     var email = email_usuario.value
     var input = document.getElementById('email_usuario')
-    var span = document.getElementById('span_erro_email')
+    var span = document.getElementById('campo_email')
+    var span_email = document.getElementById('span_erro_email')
 
     if (email.indexOf("@") == -1 || email.indexOf(".com") == -1 || email.length < 7) {
-        span.innerHTML = "Oops! Parece que seu email é inválido."
+        span_erro_email.innerHTML = "Ops! Parece que seu email é inválido."
+        input.style.borderColor = 'red'
+        span_email.style.color = 'red'
+        span_email.style.marginTop = '15px'
         span.style.color = 'red'
         span.style.fontSize = '15px'
         span.style.marginTop = '12px'
 
     }
     else {
-        span.innerHTML = ''
+        span_erro_email.innerHTML = ''
+        input.style.borderColor = 'green'
+        span.style.color = 'green'
+        span.style.fontSize = '15px'
+        span.style.marginTop = '12px'
     }
 }
 function validar_senha() {
     var senha = senha_usuario.value
     var input = document.getElementById('senha_usuario')
-    var span = document.getElementById('span_erro_senha')
+    var span = document.getElementById('campo_senha')
+    var span_senha = document.getElementById('span_senha')
+    var btn = document.getElementById('btn')
 
 
     if (senha.length < 8) {
-        span.innerHTML = 'Oops! Parece que sua senha é muito curta.'
+        span_senha.innerHTML = 'Ops! Parece que sua senha é muito curta.'
+       input.style.borderColor = 'red'
         span.style.color = 'red'
         span.style.fontSize = '15px'
         span.style.marginTop = '12px'
+        span_senha.style.color = 'red'
+          span_senha.style.marginTop = '12px'
+          btn.style.marginTop = '2px'
 
 
     }
     else {
-        span.innerHTML = ''
+        span_senha.innerHTML = ''
+        input.style.borderColor = 'green'
+        span.style.color = 'green'
+        span.style.fontSize = '15px'
+        span.style.marginTop = '12px'
+        btn.style.marginTop = '-30px'
 
     }
 }

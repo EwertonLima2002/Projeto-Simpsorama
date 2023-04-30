@@ -43,20 +43,20 @@
               
                   <h2>Cadastro</h2>
                   <div class="form_group">
-                    <label for="email" class="sub_title" id="n1">Nome</label>
+                    <label for="email" class="sub_title" id="campo_nome">Nome</label>
                     <input type="text" class="form_style" id="input_nome" onkeyup="validar_nome()">
                     <span  id="span_erro_nome"></span>
                   </div>
                   <div class="form_group">
-                    <label for="email" class="sub_title" id="n1">Email</label>
+                    <label for="email" class="sub_title" id="campo_email">Email</label>
                     <input type="text" class="form_style" id="email_usuario" onkeyup="validar_email()">
                     <span id="span_erro_email"></span>
                     
                   </div>
                   <div class="form_group">
-                    <label for="email" class="sub_title" id="n1">Senha</label>
+                    <label for="email" class="sub_title" id="campo_senha">Senha</label>
                     <input type="text" class="form_style" id="senha_usuario" onkeyup="validar_senha()">
-                    <span id="span_erro_senha" ></span>
+                    <span id="span_senha" ></span>
                     
                   </div>
 
@@ -81,7 +81,6 @@
       
                 </div>
               </h1>
-              <button onclick="ligar()">Ligar</button>
               <div style="display: none;">
                 <audio controls id="musica">
                   <source src="assents/Homer - D´OH(MP3_320K).mp3" type="audio/mpeg">
@@ -94,8 +93,4 @@
 </html>
 <script>
   var mymusica = document.getElementById('musica')
-
-function ligar(){
-  mymusica.play()
-}
 </script>
