@@ -51,16 +51,16 @@
         <img src="../assents/Homer_Telefone.png" class="atendimento_telefonico">
         <h1 class="texto_mural">Mural de Avisos</h1>
         <div class="login">
-            <form class="form">
+            <form class="form" id="form_postagem" method="post" onsubmit="return publicar()">
                 <h1>Publicar um aviso</h1>
                 <div class="form_group">
                     <label for="email" class="sub_title" id="n1">Título:</label>
-                    <input type="text" class="form_style" id="titulo" onkeyup="validar_nome()">
+                    <input type="text" class="form_style" id="titulo" >
                     <span  id="span_erro_nome"></span>
                   </div>
                   <div class="form_group">
                     <label for="email" class="sub_title" id="n1">Descrição (máximo de 250 caracteres):</label>
-                    <input type="text" class="form_style" id="descricao" onkeyup="validar_nome()" style="height: 120px;">
+                    <input type="text" class="form_style" id="descricao"  style="height: 120px;">
                     <span  id="span_erro_nome"></span>
                   </div>
                   <button class="btn" id="btn">
@@ -187,9 +187,9 @@
                         var btnDeletar = document.createElement("button");
 
 
-                        spanID.innerHTML = "ID: <b>" + publicacao.idAviso + "</b>";
-                        spanTitulo.innerHTML = "Título: <b>" + publicacao.titulo + "</b>";
-                        spanNome.innerHTML = "Autor: <b>" + publicacao.nome + "</b>";
+                        spanID.innerHTML = "ID: <b>" + publicacao.idAviso + "</b> <br>"; 
+                        spanTitulo.innerHTML = "<br>Título: <b>" + publicacao.titulo + "</b>"; 
+                        spanNome.innerHTML = "Autor: <b>" + publicacao.nome + "</b>"; 
                         divDescricao.innerHTML = "Descrição: <b>" + publicacao.descricao + "</b>";
                         btnEditar.innerHTML = "Editar";
                         btnDeletar.innerHTML = "Deletar";
