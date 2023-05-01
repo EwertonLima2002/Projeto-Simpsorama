@@ -233,23 +233,7 @@ position: absolute;
 top: 540px;
 left: 230px;
   }
-  .div-results {
-    left: 20px;
-    width: 150%;
-  }
-  
-  .div-results .feed-container {
-    background-color: #67d451;
-    border-radius: 10px;
-    margin-bottom: 80px;
-    height: 150px;
-  }
-  
-.mural .div-buttons {
-    display: flex;
-    justify-content: flex-end;
-   
-  }
+
   
   .mural .div-buttons > * {
     margin-left: 30px;
@@ -274,3 +258,64 @@ left: 230px;
     right: 10px;
     top: 100px;
   }
+
+  .dash-right .avisos .div-form button {
+    cursor: pointer;
+    font-family: "Exo 2", sans-serif;
+    border: 0;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 18px;
+    padding: 10px 15px;
+    color: white;
+    background-color: #e6005a;
+    width: 120px;
+  }
+  
+  .publicacao-btn-editar {
+    cursor: pointer;
+    font-family: "Exo 2", sans-serif;
+    border: 0;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 5px 8px;
+    color: white;
+    background-color: #e6005a;
+    width: 80px;
+  }
+  
+  .publicacao {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: stretch;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    border-bottom: 3px solid #dd2a7b;
+    padding: 20px;
+  }
+  
+  .publicacao > *:not(:last-child) {
+    padding: 0 0 10px 0;
+  }
+  
+  .div-results {
+    width: 100%;
+  }
+  
+  .div-results .feed-container {
+    background-color: #2196f3;
+    border-radius: 2px;
+    margin-bottom: 80px;
+  }
+  
+  .div-buttons {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .div-buttons > * {
+    margin-left: 30px;
+  }
+  
