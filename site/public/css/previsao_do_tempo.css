@@ -5,6 +5,26 @@
 
 }
 
+::-webkit-scrollbar {
+    width: 2px;
+  }
+  
+  
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px #fff; 
+    border-radius: 5px;
+  }
+  
+  
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(-45deg,	#FFD700 ,	 	#FFD700);
+    border-radius: 5px;
+  }
+  
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(-45deg,	#FFD700 ,	 	#FFD700);
+  }
 aside{
     color: #fff;
     width: 300px;
