@@ -27,6 +27,7 @@ function validar_email(){
         span.style.fontSize = '15px'
         span.style.marginTop = '12px'
         btn.style.marginTop = '20px'
+        texto.style.display = "none"
         
     }
 }
@@ -47,6 +48,7 @@ function validar_senha(){
         span.style.fontSize = '15px'
         span.style.marginTop = '12px'
         texto.style.display = "none"
+        btn.style.marginTop = '0px'
     }
     else{
         span.innerHTML = ''
@@ -58,7 +60,8 @@ function validar_senha(){
         span.style.marginTop = '12px'
         input.style.marginTop = '15px'
         btn.style.display = 'block'
-        btn.style.marginTop = '10px'
+        btn.style.marginTop = '0px'
+        texto.style.display = "none"
       
         
     }
