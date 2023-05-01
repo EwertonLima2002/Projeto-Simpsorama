@@ -386,23 +386,23 @@
           
 <div class="votos_homer_simpson">
     <h3>Homer Simpson</h3>
-    <p>09 Votos</p>
+    <p><span id="votos_homer">0</span> Votos</p>
     </div>
     <div class="votos_lisa_simpson">
         <h3>Lisa Simpson</h3>
-        <p>19 Votos</p>
+        <p><span id="votos_lisa">0</span> Votos</p>
         </div>
         <div class="votos_marge_simpson">
             <h3>Marge Simpson</h3>
-            <p>15 Votos</p>
+            <p><span id="votos_marge">0</span> Votos</p>
             </div>
             <div class="votos_bart_simpson">
                 <h3>Bart Simpson</h3>
-                <p>15 Votos</p>
+                <p><span id="votos_bart">0</span> Votos</p>
                 </div>
                 <div class="votos_maggie_simpson">
                     <h3>Maggie Simpson</h3>
-                    <p>15 Votos</p>
+                    <p><span id="votos_maggie">0</span> Votos</p>
                     </div>
 <div class="grafico">
     <canvas id="myChart" width="1000px" height="250px"> </canvas>
@@ -415,6 +415,11 @@
 </html>
 <script>
       var usuario = sessionStorage.NOME_USUARIO;
+      var votos_homer = document.getElementById('votos_homer')
+      var votos_lisa = document.getElementById('votos_lisa')
+      var votos_marge = document.getElementById('votos_marge')
+      var votos_bart = document.getElementById('votos_bart')
+      var votos_maggie = document.getElementById('votos_maggie')
 
 b_usuario.innerHTML = " " + usuario
 
@@ -438,6 +443,7 @@ function obterDadosGrafico(idAquario) {
             response.json().then(function (resposta) {
                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
                 plotarGrafico(resposta, idAquario);
+                
             });
         } else {
             console.error('Nenhum dado encontrado ou erro na API');
@@ -460,14 +466,12 @@ function plotarGrafico(resposta, idAquario) {
             {
                 label: '',
                 backgroundColor: '#ffffff',
-                borderColor: '#ffffff',
                 data: []
             },
             {
                 yAxisID: 'y-totalpersonagens',
                 label: 'Personagem Favorito',
-                borderColor: '#FFF',
-                backgroundColor:  [ 'rgb(255, 99, 132)', 'rgb(54, 162, 235)', 'rgb(255, 205, 86)', 'rgb(139,0,139)', 'rgb(255,255,0)', 'rgb(255,0,0)', 'rgb(0,255,0)',],
+                backgroundColor:  [ '#FF1493', '#FFFF00', '#FF4500', '#00FF00', '#4B0082'],
                 fill: true,
                 data: []
             }
@@ -479,7 +483,24 @@ function plotarGrafico(resposta, idAquario) {
         dados.labels.push(registro.personagem);
         dados.datasets[0].data.push(registro.personagem);
         dados.datasets[1].data.push(registro.voto);
-        
+        votos_homer.innerHTML = `${registro.voto}`
+
+       if(i == 0){
+      votos_lisa.innerHTML = `${registro.voto}`
+       }
+       else if(i == 1){
+        votos_homer.innerHTML = `${Number(registro.voto) - 1}`
+       }
+       
+        else if(i == 2){
+            votos_marge.innerHTML = `${registro.voto}`
+        }
+        else if(i == 3){
+            votos_bart.innerHTML = `${registro.voto}`
+        }
+        else{
+            votos_maggie.innerHTML = `${registro.voto}`
+        }
     }
 
     console.log(JSON.stringify(dados));
