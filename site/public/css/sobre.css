@@ -276,9 +276,18 @@
 }
 .profissao_ewerton{
   position: absolute;
-  top: 530px;
-  left: 720px;
+  top: 550px;
+  left: 725px;
   color: #f1f1f1;
   font-size: 20px;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.nome{
+  position: absolute;
+  top: 525px;
+  left: 765px;
+  color: #f1f1f1;
+  font-size: 20px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
 }
