@@ -274,3 +274,11 @@
     position: absolute;
     right: 20px;
 }
+.profissao_ewerton{
+  position: absolute;
+  top: 530px;
+  left: 720px;
+  color: #f1f1f1;
+  font-size: 20px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
