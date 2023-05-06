@@ -2,37 +2,32 @@ var mymusica = document.getElementById('musica')
 function validar_nome() {
     var nome = input_nome.value
     var input = document.getElementById('input_nome')
-    var span = document.getElementById('campo_nome')
+    var span_erro = document.getElementById('div_erro_nome')
     var btn = document.getElementById('btn')
 
     if (nome == "") {
-        span_erro_nome.innerHTML = "Campo vazio"
+        span_erro.style.color = 'red'
         input.style.borderColor = 'red'
-        span.style.color = 'red'
-        span_erro_nome.style.color = 'red'
-        span_erro_nome.style.marginTop = '15px'
-        span.style.color = 'red'
-        span.style.fontSize = '15px'
-        span.style.marginTop = '12px'
-        btn.style.marginTop = '2px'
+        div_erro_nome.innerHTML = "Campo vazio"
+        span_erro.style.color = 'red'
+        btn.style.backgroundColor = 'red'
+        btn.style.border = 'red'
+        
     }
     else if (nome.length < 3) {
-        span_erro_nome.innerHTML = "Oops! Parece que seu texto é muito curto."
+        div_erro_nome.innerHTML = "Insira um nome de pelo menos 3 caracteres"
         input.style.borderColor = 'red'
-        span.style.color = 'red'
-        span_erro_nome.style.color = 'red'
-        span_erro_nome.style.marginTop = '15px'
-        span.style.color = 'red'
-        span.style.fontSize = '15px'
-        span.style.marginTop = '12px'
-        btn.style.marginTop = '2px'
+        div_erro_nome.innerHTML = "Insira um nome de pelo menos 3 caracteres"
+        span_erro.style.color = 'red'
+        btn.style.backgroundColor = 'red'
+        btn.style.border = 'red'
+
     }
     else {
-        span_erro_nome.innerHTML = ''
+        span_erro.innerHTML = ''
+        btn.style.backgroundColor = '#00d2f7'
+        btn.style.border = '#00d2f7'
         input.style.borderColor = 'green'
-        span.style.color = 'green'
-        span.style.fontSize = '15px'
-        span.style.marginTop = '12px'
     }
 }
 function validar_email() {
@@ -40,56 +35,72 @@ function validar_email() {
     var input = document.getElementById('email_usuario')
     var span = document.getElementById('campo_email')
     var span_email = document.getElementById('span_erro_email')
+    var btn = document.getElementById('btn')
 
     if (email.indexOf("@") == -1 || email.indexOf(".com") == -1 || email.length < 7) {
-        span_erro_email.innerHTML = "Ops! Parece que seu email é inválido."
-        input.style.borderColor = 'red'
-        span_email.style.color = 'red'
-        span_email.style.marginTop = '15px'
-        span.style.color = 'red'
-        span.style.fontSize = '15px'
-        span.style.marginTop = '12px'
-
+    input.style.borderColor = 'red'
+    span.innerHTML = 'Ops verifique o email e tente novamente'
+    span.style.color = 'red'
+    btn.style.backgroundColor = 'red'
+        btn.style.border = 'red'
     }
     else {
-        span_erro_email.innerHTML = ''
-        input.style.borderColor = 'green'
-        span.style.color = 'green'
-        span.style.fontSize = '15px'
-        span.style.marginTop = '12px'
+        span.innerHTML = ''
+    input.style.borderColor = 'green'
+    btn.style.backgroundColor = '#00d2f7'
+    btn.style.border = '#00d2f7'
+      
     }
 }
 function validar_senha() {
     var senha = senha_usuario.value
+    var span = document.getElementById('span_senha')
     var input = document.getElementById('senha_usuario')
-    var span = document.getElementById('campo_senha')
-    var span_senha = document.getElementById('span_senha')
     var btn = document.getElementById('btn')
+  
 
 
     if (senha.length < 8) {
-        span_senha.innerHTML = 'Ops! Parece que sua senha é muito curta.'
-       input.style.borderColor = 'red'
-        span.style.color = 'red'
-        span.style.fontSize = '15px'
-        span.style.marginTop = '12px'
-        span_senha.style.color = 'red'
-          span_senha.style.marginTop = '12px'
-          btn.style.marginTop = '2px'
+        input.style.borderColor = 'red'
+    span.innerHTML = 'Ops insira um senha de pelo menos 8 dígitos'
+    span.style.color = 'red'
+    btn.style.backgroundColor = 'red'
+    btn.style.border = 'red'
 
 
     }
     else {
-        span_senha.innerHTML = ''
         input.style.borderColor = 'green'
-        span.style.color = 'green'
-        span.style.fontSize = '15px'
-        span.style.marginTop = '12px'
-        btn.style.marginTop = '-30px'
+    span.innerHTML = ''
+    btn.style.backgroundColor = '#00d2f7'
+    btn.style.border = '#00d2f7'
+    span.style.color = 'red'
 
     }
 }
 
+function confirmar_senha(){
+    var confirmar_senha = input_confimar_senha.value
+    var input = document.getElementById('input_confimar_senha')
+    var senha = senha_usuario.value
+    var span = document.getElementById('span_confirma_senha')
+    var btn = document.getElementById('btn')
+
+    if(confirmar_senha != senha){
+        input.style.borderColor = 'red'
+        span.innerHTML = 'Ops senhas diferentes'
+        span.style.color = 'red'
+        btn.style.backgroundColor = 'red'
+        btn.style.border = 'red'
+    }
+    else{
+        input.style.borderColor = 'green'
+        span.innerHTML = ''
+        btn.style.backgroundColor = '#00d2f7'
+        btn.style.border = '#00d2f7'
+        span.style.color = 'red'
+    }
+}
 function cadastrar() {
     //aguardar();
 

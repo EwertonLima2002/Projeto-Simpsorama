@@ -1,96 +1,52 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro Simpsorama</title>
     <link rel="stylesheet" href="css/cadastro.css">
-    <link rel="stylesheet" href="js/funcao_gliter.js">
-    <script src="js/cadastro.js"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="js/funcoes.js"></script>
+    <link href="select2.min.css" rel="stylesheet" />
+<script src="select2.min.js"></script>
+<script src="js/cadastro.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="js/funcoes.js"></script>
 </head>
 <body>
-    <div class="page-wrapper">
-        <div class="nav-wrapper">
-          <div class="grad-bar"></div>
-          <nav class="navbar">
-            <img src="assents/Logo.png" alt="" class="img">
-            <div class="menu-toggle" id="mobile-menu">
-              <span class="bar"></span>
-              <span class="bar"></span>
-              <span class="bar"></span>
-            </div>
-            <ul class="nav no-search">
-              <li class="nav-item"><a href="index.html">Inicio</a></li>
-              <li class="nav-item"><a href="cadastro.html">Cadastro</a></li>
-              <li class="nav-item"><a href="login.html">Login</a></li>
-              <li class="nav-item"><a href="sobre_mim.html">Sobre</a></li>
-              <li class="nav-item"><a href="curiosidades.html">Curiosidades</a></li>
-              <li class="nav-item"><a href="quiz_simpsorama.html" id="game">Quiz</a></li>
-    
-            </ul>
-    
-          </nav>
+    <div class="conteudo">
+        <div class="esquerda">
+          <a href="index.html"><img src="https://icones.pro/wp-content/uploads/2021/06/icone-fleche-gauche-noir.png" class="img_seta"></a>
+       <h1 class="cadastro">Faça seu Cadastro</h1>
+       <h4 class="texto_input">Nome completo:</h4> 
+
+       <input type="text" class="input" placeholder="Insira seu nome completo" id="input_nome" onkeyup="validar_nome()">
+       <p id="div_erro_nome"></p>
+       <p class="texto_email">Email:</p>
+         <input type="text" class="input_email"  placeholder="Insira um email válido" id="email_usuario" onkeyup="validar_email()">
+         <span id="campo_email"></span>
+         <p class="texto_senha">Senha:</p>
+         <input type="text" class="input_senha"  placeholder="Insira uma senha de 8 caracteres" id="senha_usuario" onkeyup="validar_senha()">
+         <span id="span_senha"></span>
+         <p class="texto_confirmar">Confirmar senha:</p>
+         <input class="input_confirmar" placeholder="Confirme a mesma senha" id="input_confimar_senha" onkeyup="confirmar_senha()">
+         <span id="span_confirma_senha"></span>
+    <p class="personagem">Personagem Favorito</p>
+    <select id="" class="select" id="select_personagem">
+        <option value="1">Lisa Simpson</option>
+        <option value="2">Homer Simpson</option>
+        <option value="3">Marge Simpson</option>
+        <option value="4">Bart Simpson</option>
+        <option value="5">Maggie Simpson</option>
+    </select>
+
+    <button class="btn" id="btn" onclick="cadastrar()">Cadastrar</button>
         </div>
+        <div class="direita">
 
-        <div class="banner">
-            <div class="container">
-              <div class="form">
-                <div class="login">
-                  <img src="assents/Icon.svg" class="img_cadastro">
-              
-                  <h2>Cadastro</h2>
-                  <div class="form_group">
-                    <label for="email" class="sub_title" id="campo_nome">Nome</label>
-                    <input type="text" class="form_style" id="input_nome" onkeyup="validar_nome()">
-                    <span  id="span_erro_nome"></span>
-                  </div>
-                  <div class="form_group">
-                    <label for="email" class="sub_title" id="campo_email">Email</label>
-                    <input type="text" class="form_style" id="email_usuario" onkeyup="validar_email()">
-                    <span id="span_erro_email"></span>
-                    
-                  </div>
-                  <div class="form_group">
-                    <label for="email" class="sub_title" id="campo_senha">Senha</label>
-                    <input type="text" class="form_style" id="senha_usuario" onkeyup="validar_senha()">
-                    <span id="span_senha" ></span>
-                    
-                  </div>
-
-                  <div class="form_group">
-                    <label for="password" class="sub_title" id="personagens_usuario">Personagem Favorito</label>
-                    <select id="select_personagem">
-                      <option value="1">Lisa Simpson</option>
-                      <option value="2">Homer Simpson</option>
-                      <option value="3">Marge Simpson</option>
-                      <option value="4">Bart Simpson</option>
-                      <option value="5">Maggie Simpson</option>
-                    </select>
-        
-                  </div>
-                  <div>
-                  <button class="btn" onclick="cadastrar()" id="btn">
-                    <h3 id="texto">Cadastrar</h3>
-                  </button>
-
-                </div>
-              </div>
-      
-                </div>
-              </h1>
-              <div style="display: none;">
-                <audio controls id="musica">
-                  <source src="assents/Homer - D´OH(MP3_320K).mp3" type="audio/mpeg">
-                 
-                </audio>
-              </div>
-            </div>
-          </div>
+        </div>
+    </div>
 </body>
 </html>
 <script>
-  var mymusica = document.getElementById('musica')
+
 </script>

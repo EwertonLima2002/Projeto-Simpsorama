@@ -1,66 +1,39 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Simpsorama</title>
+    <title> Login Simpsorama</title>
     <link rel="stylesheet" href="css/login.css">
-    <link rel="stylesheet" href="js/funcao_gliter.js">
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="js/funcoes.js"></script>
-    <script src="js/login.js"></script>
-    
+    <link href="select2.min.css" rel="stylesheet" />
+<script src="js/login.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="js/funcoes.js"></script>
 </head>
 <body>
-    <div class="page-wrapper">
-        <div class="nav-wrapper">
-          <div class="grad-bar"></div>
-          <nav class="navbar">
-            <img src="assents/Logo.png" alt="" class="img">
-            <div class="menu-toggle" id="mobile-menu">
-              <span class="bar"></span>
-              <span class="bar"></span>
-              <span class="bar"></span>
-            </div>
-            <ul class="nav no-search">
-              <li class="nav-item"><a href="index.html">Inicio</a></li>
-              <li class="nav-item"><a href="cadastro.html">Cadastro</a></li>
-              <li class="nav-item"><a href="login.html">Login</a></li>
-              <li class="nav-item"><a href="sobre_mim.html">Sobre</a></li>
-              <li class="nav-item"><a href="curiosidades.html">Curiosidades</a></li>
-              <li class="nav-item"><a href="quiz_simpsorama.html" id="game">Quiz</a></li>
-    
-            </ul>
-    
-          </nav>
-        </div>
+    <div class="conteudo">
+        <div class="esquerda">
+          <a href="index.html"> <img src="https://icones.pro/wp-content/uploads/2021/06/icone-fleche-gauche-noir.png" class="img_seta"></a> 
+       <h1 class="cadastro">Entre em sua conta</h1>
+ 
 
-        <div class="banner">
-            <div class="container">
-              <div class="form">
-              <div class="login">
-                <img src="assents/Homer_Zumbi.webp" class="img_zumbi">
-                <h2>Entrar</h2>
-                <div class="form_group">
-                  <label for="email" class="sub_title" id="label_email">Email</label>
-                  <input type="text" class="form_style" id="email_usuario" onkeyup="validar_email()">
-                  <span id="span_erro_email"></span>
-                </div>
-                <div class="form_group">
-                  <label for="email" class="sub_title" id="label_senha">Senha</label>
-                  <input type="text" class="form_style" id="senha_usuario" onkeyup="validar_senha()">
-                  <span id="span_erro_senha"></span>
-                </div>
-                <button class="btn" onclick="login()" id="btn">
-                  <h3 id="texto">Entrar</h3>
-                </button>
-                <h4 class="sem_cadastro" id="sem_cadastro">Não possui cadastro? <a href="cadastro.html"> Clique Aqui</a></h4>
-              </div>
-            </div>
-                </div>
-              </h1>
-            </div>
-          </div>
+       <p class="texto_email">Email:</p>
+       <input type="email" class="input_email" id="email_usuario" onkeyup="validar_email()">
+       <span id="campo_email"></span>
+       <p class="texto_senha">Senha:</p>
+         <input type="text" class="input" id="input_senha" onkeyup="validar_senha()">
+         <span id="campo_senha"></span>
+         
+
+    <button class="btn" id="btn" onclick="login()">Login</button>
+        </div>
+        <div class="direita">
+
+        </div>
+    </div>
 </body>
 </html>
+<script>
+
+</script>

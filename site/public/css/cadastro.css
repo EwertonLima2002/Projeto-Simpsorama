@@ -1,315 +1,266 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Lato', 'Arial', sans-serif;
-  }
-  #game{
-    margin: 12px;
-  }
-  /* HEADINGS */
-  
-  
-  
-  h1 {
-    font-size: 2.2rem;
-  }
-  
-  h2 {
-    color: #000;
-    font-size: 1.3rem;
-    text-align: center;
-    line-height: 1.4;
-    margin-bottom: 10px;
-  }
-  
-  /* BASIC SETUP */
-  
-  .page-wrapper {
-    width: 100%;
-    height: auto;
-  }
-  
-  .nav-wrapper {
-    width: 100%;
-    position: -webkit-sticky; /* Safari */
-    position: sticky;
-    top: 0;
-    background-color: #fff;
-  }
-  
-  .grad-bar {
-    width: 100%;
-    height: 5px;
-    background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
-    background-size: 400% 400%;
-        -webkit-animation: gradbar 15s ease infinite;
-      -moz-animation: gradbar 15s ease infinite;
-      animation: gradbar 15s ease infinite;
-  }
-  
-  /* NAVIGATION */
-  
-  .navbar {
-    display: grid;
-    grid-template-columns: 1fr 3fr;
-    align-items: center;
-    height: 50px;
-    overflow: hidden;
-  }
-  
-  .navbar img {
-    height: 40px;
-    width: auto;
-    justify-self: start;
-    margin-left: 20px;
-  }
-  
-  .navbar ul {
-    list-style: none;
-    display: grid;
-    grid-template-columns: repeat(6,1fr);
-    justify-self: end;
-    
-  }
-  .line{
-    border-right: 2px solid rgba(255 , 255 , 255 , 0.75);
-    color: #f1f1f1;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-size: 3em;
-    margin: 0 auto;
-    white-space: nowrap;
-    overflow: hidden;
-  }
-  .typing-animation{
-    animation: blinkCursor 500ms infinite normal , typing 4s steps(50) 1s normal;
-  }
-  @keyframes typing{
-    form{
-      width: 0;
-    }
-    to{
-      width: 18em;
-    }
-  }
-  @keyframes blinkCursor{
-    from{
-      border-right-color: rgba(255 , 255 , 255 , 0.75);
-    }
-    to{
-      border-right-color: transparent;
-    }
-  }
-  
-  .nav-item a {
-    color: #000;
-    font-size: 0.9rem;
-    font-weight: 400;
-    text-decoration: none;
-    transition: color 0.3s ease-out;
-  }
-  
-  .nav-item a:hover {
-    color: yellow;
-  }
-  
-  /* SEARCH FUNCTION */
-  
-  #search-icon {
-    font-size: 0.9rem;
-    margin-top: 3px;
-    margin-left: 15px;
-    transition: color 0.3s ease-out;
-  }
-  
-  #search-icon:hover {
-    color: #3498db;
-    cursor: pointer;
-  }
-  
-  .search {
-    transform: translate(-35%);
-    -webkit-transform: translate(-35%);
-    transition: transform 0.7s ease-in-out;
-    color: #3498db;
-  }
-  
-  .no-search {
-    transform: translate(0);
-    transition: transform 0.7s ease-in-out;
-  }
-  
-  .search-input {
-    position: absolute;
-    top: -4px;
-    right: -125px;
-    opacity: 0;
-    z-index: -1;
-    transition: opacity 0.6s ease;
-  }
-  
-  .search-active {
-    opacity: 1;
-    z-index: 0;
-  }
-
-  
-.menu-toggle {
-    justify-self: end;
-    margin-right: 25px;
-    display: none;
-  }
-  
-  .menu-toggle:hover{
-    cursor: pointer;
-  }
-  
-  /* KEYFRAME ANIMATIONS */
-  
-  @-webkit-keyframes gradbar {
-      0% {
-          background-position: 0% 50%
-      }
-      50% {
-          background-position: 100% 50%
-      }
-      100% {
-          background-position: 0% 50%
-      }
-  }
-  
-  @-moz-keyframes gradbar {
-      0% {
-          background-position: 0% 50%
-      }
-      50% {
-          background-position: 100% 50%
-      }
-      100% {
-          background-position: 0% 50%
-      }
-  }
-  
-  @keyframes gradbar {
-      0% {
-          background-position: 0% 50%
-      }
-      50% {
-          background-position: 100% 50%
-      }
-      100% {
-          background-position: 0% 50%
-      }
-  }
-  
-  /* Media Queries */
-  
-    /* Mobile Devices - Phones/Tablets */
-  
-  @media only screen and (max-width: 720px) { 
-    .features {
-      flex-direction: column;
-      padding: 50px;
-    }
-    
-  
-    
-    
-  }
-
-  .banner{
-    background-image: url(../assents/Banner_Cadastro.png);
-    background-size: cover;
-    }
-    
-.banner .container{
-    height: 601px;
-    display: flex;
-   
-    color: white;
-    align-items: center;
-    justify-content: center;
-    align-items: center;
-    text-decoration: none;
-    
+html {
+  scroll-padding-top: 7vh;
+  scroll-behavior: smooth;
 }
 
-.login{
-  width: 400px;
-  height: 520px;
-  background-color: #fff;
-  border-radius: 15px;
+body {
+  scrollbar-width: thin;
+  color: #FFF;
+  font-family: 'Mulish', sans-serif;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
 }
-.form{
+
+.conteudo {
   display: flex;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 500px;
+  height: 100vh;
 }
-.login h2{
-  color: #FFA500;
-  font-size: 30px;
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  font-weight: 200;
-}
-.title{
-  color: #FF8C00;
-  font-weight: 900;
-  font-size: 1.5em;
-  margin-top: 20px;
-}
-.sub_title{
-  font-weight: 600;
-  margin: 5px 0;
-  color: #000;
-  
-}
-.form_group{
+
+.direita {
+  margin: 0px;
   display: flex;
+  position: relative;
   flex-direction: column;
-  align-items: baseline;
-  margin: 20px;
+  align-items: center;
+  justify-content: center;
+  width: 45%;
+  height: 100vh;
+  padding: 8vh;
+  background-image: url('../assents/Login.jpg');
+  background-size: cover;
 }
-.form_style{
-  outline: none;
-  border: 2px solid #000;
-  box-shadow: 3px 4px 0px 1px #000;
-  width: 350px;
-  padding: 12px 10px;
-  border-radius: 4px;
-  font-size: 15px;
+
+.direita img {
+  position: absolute;
+  width: 2vw;
+  top: 0;
+  right: 0;
+  margin: 1.5rem;
 }
-.form_style:focus{
-  transform: translateY(4px);
-  box-shadow: 1px 2px 0px 0px #000;
+
+.direita img:hover {
+  -webkit-transform: scale(1.05);
+  -moz-transform: scale(1.05);
+  -o-transform: scale(1.05);
+  -ms-transform: scale(1.05);
+  transform: scale(1.05);
 }
-.btn{
-  padding: 15px;
-  margin: 0px 40px;
-  width: 310px;
-  font-size: 15px;
-  background: linear-gradient(-45deg, #FF8C00 ,  #FFFF00, 	#FFD700, #FFA500);
-  border-radius: 30px;
-  font-weight: 800;
-  border:none;
-  font-family: Georgia, 'Times New Roman', Times, serif
+
+.esquerda {
+  display: flex;
+  width: 55%;
+  height: 115vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background: linear-gradient(-40deg, #ffd902, #f7db40);
 }
-select {
+
+.cadastro {
+  color: #ffff;
+  position: absolute;
+  top: 30px;
+  left: 230px;
+  font-size: 30px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-weight: 500;
+}
+
+.texto_input {
+  color: #f57600;
+  position: absolute;
+  top: 110px;
+  left: 30px;
+  font-size: 20px;
+  font-weight: 100;
+}
+
+.texto_email {
+  color: #f57600;
+  position: absolute;
+  top: 120px;
+  left: 360px;
+  font-size: 20px;
+  font-weight: 100;
+}
+
+.texto_senha {
+  position: absolute;
+  top: 280px;
+  left: 30px;
+  color: #f57600;
+  font-size: 20px;
+  font-weight: 100;
+}
+
+.texto_confirmar {
+  position: absolute;
+  top: 280px;
+  left: 360px;
+  color: #f57600;
+  font-size: 20px;
+  font-weight: 100;
+}
+
+.personagem {
+  position: absolute;
+  top: 370px;
+  left: 250px;
+  color: #f57600;
+  font-size: 20px;
+  font-weight: 100;
+}
+
+.select {
   width: 300px;
   height: 30px;
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
-  background:  #FFF;
-  border: 1px solid #333;
+  background: #FFF;
+  border: 1px solid #000000;
   font-size: 15px;
   padding-right: 20px;
   border-radius: 15px;
-}
-.img_cadastro{
   position: absolute;
-  top: 110px;
-  left: 500px;
-  width: 70px;
+  top: 420px;
+  left: 200px;
+
+  font-size: 15px;
+  font-weight: 100;
+}
+
+.input {
+  position: absolute;
+  top: 172px;
+  left: 30px;
+  border: none;
+  padding: 5px;
+  width: 20vw;
+  height: 20px;
+  border-radius: 6px;
+  font-size: 15px;
+  font-family: 'Mulish';
+  display: flex;
+  border-bottom: 5px solid rgb(0, 0, 0);
+}
+
+.input_email {
+  position: absolute;
+  left: 360px;
+  top: 170px;
+  border: none;
+  padding: 5px;
+  width: 20vw;
+  height: 20px;
+  border-radius: 6px;
+  font-size: 15px;
+
+  display: flex;
+  border-bottom: 5px solid rgb(0, 0, 0);
+}
+
+.input_senha {
+  position: absolute;
+  top: 325px;
+  left: 30px;
+
+  border: none;
+  padding: 5px;
+  width: 20vw;
+  height: 20px;
+  border-radius: 6px;
+  font-size: 15px;
+
+  display: flex;
+  border-bottom: 5px solid rgb(0, 0, 0);
+}
+
+.input:hover {
+  border-radius: 8px;
+}
+
+.input_confirmar {
+  position: absolute;
+  top: 325px;
+  left: 360px;
+
+  border: none;
+  padding: 5px;
+  width: 20vw;
+  height: 20px;
+  border-radius: 6px;
+  font-size: 15px;
+  display: flex;
+  border-bottom: 5px solid rgb(0, 0, 0);
+}
+
+.btn {
+  position: absolute;
+  top: 480px;
+  left: 200px;
+  height: 50px;
+  background-color: #00d2f7;
+  width: 300px;
+  border: 1px solid #00d2f7;
+  border-radius: 30px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #fff;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.img_seta {
+  position: absolute;
+  width: 3vw;
+  top: 0;
+  left: 0;
+  margin: 1.5rem;
+}
+#div_erro_nome{
+color: red;
+position: absolute;
+width: 500px;
+height: 300px;
+top: 195px;
+font-size: 15px;
+left: 35px;
+font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serifx;
+}
+#campo_email{
+  color: red;
+position: absolute;
+width: 500px;
+height: 300px;
+top: 205px;
+font-size: 15px;
+left: 365px;
+font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serifx;
+
+}
+#span_senha{
+  color: red;
+position: absolute;
+width: 500px;
+height: 300px;
+top: 365px;
+font-size: 15px;
+left: 35px;
+font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serifx;
+
+}
+#span_confirma_senha{
+  color: red;
+  position: absolute;
+  width: 500px;
+  height: 300px;
+  top: 365px;
+  font-size: 15px;
+  left: 365px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serifx;
+  
 }
