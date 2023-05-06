@@ -23,9 +23,9 @@ function validar_email(){
     }
 }
 function validar_senha(){
-    var senha = input_senha.value
+    var senha = senha_usuario.value
     var span = document.getElementById('campo_senha')
-    var input = document.getElementById('input_senha')
+    var input = document.getElementById('senha_usuario')
     var btn = document.getElementById('btn')
   
 
@@ -49,7 +49,7 @@ function login() {
     //aguardar();
 
     var emailVar = email_usuario.value;
-    var senhaVar = input_senha.value;
+    var senhaVar = senha_usuario.value;
 
     if (emailVar == "" || senhaVar == "") {
         // cardErro.style.display = "block"
@@ -109,6 +109,11 @@ function login() {
 
     return false;
 }
+
+//function sumirMensagem() {
+  //  cardErro.style.display = "none"
+// }
+
 
 //function sumirMensagem() {
   //  cardErro.style.display = "none"
