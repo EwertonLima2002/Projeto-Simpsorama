@@ -483,13 +483,13 @@ function plotarGrafico(resposta, idAquario) {
         dados.labels.push(registro.personagem);
         dados.datasets[0].data.push(registro.personagem);
         dados.datasets[1].data.push(registro.voto);
-        votos_homer.innerHTML = `${registro.voto}`
 
        if(i == 0){
       votos_lisa.innerHTML = `${registro.voto}`
        }
        else if(i == 1){
-        votos_homer.innerHTML = `${Number(registro.voto) - 1}`
+        votos_homer.innerHTML = `${registro.voto}`
+    
        }
        
         else if(i == 2){

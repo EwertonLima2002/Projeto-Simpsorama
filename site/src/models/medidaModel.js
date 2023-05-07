@@ -5,12 +5,12 @@ function buscarUltimasMedidas(idAquario, limite_linhas) {
     instrucaoSql = ''
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
-        instrucaoSql = `select count(usuario.fkpersonagem) as voto , personagem.nome as personagem, usuario. *   
+        instrucaoSql = `select count(usuario.fkpersonagem) as voto , personagem.nome as personagem   
         from usuario join personagem on idpersonagem= fkpersonagem group by personagem;`;
 
     }
      else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-        instrucaoSql = `select count(usuario.fkpersonagem) as voto , personagem.nome as personagem, usuario. *   
+        instrucaoSql = `select count(usuario.fkpersonagem) as voto , personagem.nome as personagem   
         from usuario join personagem on idpersonagem= fkpersonagem group by personagem;`;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
