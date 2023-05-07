@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Simpsorama</title>
+    <link rel="stylesheet" href="css/matematica.css">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bitter:ital@1&family=Raleway:wght@100&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="page-wrapper">
+        <div class="nav-wrapper">
+          <div class="grad-bar"></div>
+          <nav class="navbar">
+            <img src="assents/Logo.png" alt="" class="img">
+            <div class="menu-toggle" id="mobile-menu">
+              <span class="bar"></span>
+              <span class="bar"></span>
+              <span class="bar"></span>
+            </div>
+            <ul class="nav no-search">
+              <li class="nav-item"><a href="index.html">Inicio</a></li>
+              <li class="nav-item"><a href="cadastro.html">Cadastro</a></li>
+              <li class="nav-item"><a href="login.html">Login</a></li>
+              <li class="nav-item"><a href="sobre_mim.html">Sobre</a></li>
+              <li class="nav-item"><a href="curiosidades.html">Curiosidades</a></li>
+              <li class="nav-item"><a href="quiz_simpsorama.html" id="game">Quiz</a></li>
+    
+            </ul>
+    
+          </nav>
+        </div>
+
+        <div class="banner">
+            <div class="container">
+                <div class="form">
+
+                    <img src="assents/Logo_Matematica.jpg" class="logo">
+
+                   <p>Quantos Epísodios você já assistiu:</p>
+                    <input type="text" class="input_episodio" id="input_episodio" placeholder="Máximo 717">
+                    <button onclick="calcular()">Calcular</button>
+                    <div id="res"></div>
+                </div>
+
+                </div>
+            </div>
+        </div>
+</body>
+</html>
+<script>
+    function calcular(){
+        var total_episodios = 717
+        var qtd_episodios = Number(input_episodio.value);
+        var total = (qtd_episodios/ total_episodios) * 100
+        total = total.toFixed(2)
+        res.innerHTML = ''
+
+        if(qtd_episodios >total_episodios){
+            swal("Ops", "Verifique os dados e tente novamente, Quantidade inválida", "error")
+        }
+        else{
+
+        res.innerHTML = `Você já assistiu a ${total}% dos episódios dos Simpsons.`
+    }
+    }
+</script>

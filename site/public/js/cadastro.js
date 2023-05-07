@@ -1,4 +1,4 @@
-var mymusica = document.getElementById('musica')
+
 function validar_nome() {
     var nome = input_nome.value
     var input = document.getElementById('input_nome')
@@ -117,27 +117,32 @@ function cadastrar() {
     var nomeVar = input_nome.value;
     var emailVar = email_usuario.value;
     var senhaVar = senha_usuario.value;
+    var confirmar_senha = input_confimar_senha.value
     var personagemVar = select_personagem.value
 
-    if (nomeVar == "" || emailVar == "" || senhaVar == "" || personagemVar <= 0) {
+    if (nomeVar == "" || emailVar == "" || senhaVar == "" || personagemVar <= 0 || confirmar_senha == "") {
         //cardErro.style.display = "block"
         swal("Ops", "Preencha todos os campos", "error")
-        mymusica.play()
+        musica.play()
 
         finalizarAguardar();
         return false;
     }
     else if (nomeVar.length < 3) {
         swal("Ops", "O nome inserido é muito curto. Por favor, insira um nome com pelo menos 3 caracteres", "warning")
-        mymusica.play()
+        musica.play()
     }
     else if (emailVar.indexOf("@") == -1 || emailVar.indexOf(".com") == -1 || emailVar.length < 7) {
         swal("Ops", "O e-mail cadastrado é inválido. Por favor, insira um e-mail válido.", "warning")
-        mymusica.play()
+        musica.play()
     }
     else if (senhaVar.length < 8) {
         swal("Ops", "A senha inserida é muito curta. Por favor,insira uma senha com pelo menos 8 caracteres.", "warning")
-        mymusica.play()
+        musica.play()
+    }
+    else if(confirmar_senha != senhaVar){
+        swal("Ops", "A senha inserida é diferente da cadastrada", "warning")
+        musica.play()
     }
     else {
         setInterval('oi', 5000)
