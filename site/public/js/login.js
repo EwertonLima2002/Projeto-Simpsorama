@@ -12,6 +12,7 @@ function validar_email(){
         span.style.color = 'red'
       btn.style.backgroundColor = 'red'
         btn.style.border = 'red'
+        input.classList.add("shake");
        
     }
     else{
@@ -19,6 +20,7 @@ function validar_email(){
         input.style.borderColor = 'green'
         btn.style.backgroundColor = '#00d2f7'
         btn.style.border = '#00d2f7'
+        input.classList.remove("shake");
         
     }
 }
@@ -28,13 +30,21 @@ function validar_senha(){
     var input = document.getElementById('senha_usuario')
     var btn = document.getElementById('btn')
   
-
-    if(senha.length<8){
+  if(senha == ""){
+    input.style.borderColor = 'red'
+    span.innerHTML = `Campo vazio`
+    span.style.color = 'red'
+    btn.style.backgroundColor = 'red'
+    btn.style.border = 'red'
+    input.classList.add("shake");
+  }
+    else if(senha.length<8){
         input.style.borderColor = 'red'
-        span.innerHTML = 'Ops senha incorreta'
+        span.innerHTML = `Por favor, insira uma senha com pelo menos 8 caracteres.`
         span.style.color = 'red'
         btn.style.backgroundColor = 'red'
         btn.style.border = 'red'
+        input.classList.add("shake");
     }
     else{
         input.style.borderColor = 'green'
@@ -42,6 +52,7 @@ function validar_senha(){
         btn.style.backgroundColor = '#00d2f7'
         btn.style.border = '#00d2f7'
         span.style.color = 'red'
+        input.classList.remove("shake");
 
     }
 }

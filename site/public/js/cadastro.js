@@ -12,6 +12,7 @@ function validar_nome() {
         span_erro.style.color = 'red'
         btn.style.backgroundColor = 'red'
         btn.style.border = 'red'
+        input.classList.add("shake");
         
     }
     else if (nome.length < 3) {
@@ -21,6 +22,7 @@ function validar_nome() {
         span_erro.style.color = 'red'
         btn.style.backgroundColor = 'red'
         btn.style.border = 'red'
+        input.classList.add("shake");
 
     }
     else {
@@ -28,6 +30,7 @@ function validar_nome() {
         btn.style.backgroundColor = '#00d2f7'
         btn.style.border = '#00d2f7'
         input.style.borderColor = 'green'
+        input.classList.remove("shake");
     }
 }
 function validar_email() {
@@ -43,12 +46,14 @@ function validar_email() {
     span.style.color = 'red'
     btn.style.backgroundColor = 'red'
         btn.style.border = 'red'
+        input.classList.add("shake");
     }
     else {
         span.innerHTML = ''
     input.style.borderColor = 'green'
     btn.style.backgroundColor = '#00d2f7'
     btn.style.border = '#00d2f7'
+    input.classList.remove("shake");
       
     }
 }
@@ -66,6 +71,7 @@ function validar_senha() {
     span.style.color = 'red'
     btn.style.backgroundColor = 'red'
     btn.style.border = 'red'
+    input.classList.add("shake");
 
 
     }
@@ -75,7 +81,7 @@ function validar_senha() {
     btn.style.backgroundColor = '#00d2f7'
     btn.style.border = '#00d2f7'
     span.style.color = 'red'
-
+    input.classList.remove("shake");
     }
 }
 
@@ -92,6 +98,7 @@ function confirmar_senha(){
         span.style.color = 'red'
         btn.style.backgroundColor = 'red'
         btn.style.border = 'red'
+        input.classList.add("shake");
     }
     else{
         input.style.borderColor = 'green'
@@ -99,6 +106,7 @@ function confirmar_senha(){
         btn.style.backgroundColor = '#00d2f7'
         btn.style.border = '#00d2f7'
         span.style.color = 'red'
+        input.classList.remove("shake");
     }
 }
 function cadastrar() {
