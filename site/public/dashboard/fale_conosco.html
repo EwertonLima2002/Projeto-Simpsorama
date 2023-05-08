@@ -11,6 +11,7 @@
     <script src="https://kit.fontawesome.com/3f0399636b.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <script src="../js/funcoes.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
    
 </head>
 <body onload="validarSessao(), atualizarFeed()">
@@ -108,7 +109,8 @@
             console.log("resposta: ", resposta);
 
             if (resposta.ok) {
-                window.alert("Post realizado com sucesso pelo usuario de ID: " + idUsuario + "!");
+
+                swal("Parabéns", `Post realizado com sucesso pelo usuario de ID:  ${idUsuario}!"` , "success")
                 window.location = "fale_conosco.html";
                 limparFormulario();
                 finalizarAguardar();
@@ -144,7 +146,7 @@
         }).then(function (resposta) {
 
             if (resposta.ok) {
-                window.alert("Post deletado com sucesso pelo usuario de email: " + sessionStorage.getItem("EMAIL_USUARIO") + "!");
+                swal("Parabéns", `Post deletado com sucesso pelo usuario de email: ${sessionStorage.getItem("EMAIL_USUARIO") }!"` , "success")
                 window.location = "/dashboard/fale_conosco.html"
             } else if (resposta.status == 404) {
                 window.alert("Deu 404!");

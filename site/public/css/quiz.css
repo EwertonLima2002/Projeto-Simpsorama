@@ -365,7 +365,7 @@ input[type=number]::-webkit-outer-spin-button {
 .balao:nth-child(1) {
   left: 10%;
   animation-delay: 0s;
-  background-color: #ff69b4;
+  background-color: rgba(72, 255, 88, 0.993);
 }
 
 .balao:nth-child(2) {
@@ -377,19 +377,53 @@ input[type=number]::-webkit-outer-spin-button {
 .balao:nth-child(3) {
   left: 50%;
   animation-delay: 4s;
-  background-color: #ffd700;
+  background-color: #ff0000;
 }
 
 .balao:nth-child(4) {
   left: 70%;
   animation-delay: 6s;
-  background-color: #ff7f50;
+  background-color: #be1bff;
 }
 
 .balao:nth-child(5) {
   left: 90%;
   animation-delay: 8s;
-  background-color: #8a2be2;
+  background-color: #d8f000;
+}
+
+.balao:nth-child(6) {
+  left: 75%;
+  animation-delay: 7s;
+  background-color: #5400f0;
+}
+
+.balao:nth-child(7) {
+  left: 65%;
+  animation-delay: 8s;
+  background-color: #1cf000;
+}
+.balao:nth-child(8) {
+  left: 80%;
+  animation-delay: 10s;
+  background-color: #f000a0;
+}
+
+.balao:nth-child(9) {
+  left: 20%;
+  animation-delay: 9s;
+  background-color: #00f0a0;
+}
+
+.balao:nth-child(10) {
+  left: 35%;
+  animation-delay: 8s;
+  background-color: #8400f0;
+}
+.balao:nth-child(11) {
+  left: 10%;
+  animation-delay: 10s;
+  background-color: #ec019e;
 }
 .seta{
   position: absolute;
@@ -404,4 +438,7 @@ input[type=number]::-webkit-outer-spin-button {
   -o-transform: scale(1.05);
   -ms-transform: scale(1.05);
   transform: scale(1.05);
+}
+input:hover{
+  border-radius: 10px;
 }
