@@ -6,7 +6,7 @@ function buscarUltimasMedidas(idAquario, limite_linhas) {
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
         instrucaoSql = `select count(usuario.fkpersonagem) as voto , personagem.nome as personagem   
-        from usuario join personagem on idpersonagem= fkpersonagem group by personagem;`;
+        from usuario join personagem on idpersonagem = fkpersonagem group by personagem;`;
 
     }
      else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
