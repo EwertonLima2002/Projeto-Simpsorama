@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="css/quiz.css">
   <link rel="icon" href="assents/Icon.svg">
   <script src="js/funcao_gliter.js"></script>
+  <script src="js/funcoes.js"></script>
 
 </head>
 
@@ -111,7 +112,7 @@
       Como vou conseguir comprar uma rosquinha com isso?</h3>`
       musica.play()
    }
-   else if(acertos == 2){
+   else if( acertos == 2){
     div_usuario.style.display = "none";
     resultado.innerHTML = `<img src="https://2.bp.blogspot.com/-mR786WllPhk/UFeUaG5QOkI/AAAAAAAAANk/1FRpL_q3V_Y/s1600/homer-simpson.gif"  class="img"><br>
     <h3>Homer Simpson vibrou ao acertar dois números da Mega Millions, aumentando suas expectativas de um prêmio maior. Mas quando ele descobriu que o prêmio para essa faixa era de apenas 15 dólares, sua animação se transformou em frustração. '15 dólares?<br>
@@ -149,5 +150,41 @@
        Ahh, eu já estou imaginando como vou gastar todo esse dinheiro!</h3>`
 
    }
-  }
+
+       
+   setInterval('oi', 5000)
+
+fetch("/usuarios/cadastrar_acertos", {
+method: "POST",
+headers: {
+ "Content-Type": "application/json"
+},
+body: JSON.stringify({
+
+acertos_Server: acertos
+})
+}).then(function (resposta) {
+
+console.log("resposta: ", resposta);
+
+if (resposta.ok) {
+
+
+console.log("Funcionando")
+
+
+
+ limparFormulario();
+ finalizarAguardar();
+} else {
+ swal("Ops", "Mais de um usuário com o mesmo login e senha!", "error")
+}
+}).catch(function (resposta) {
+console.log(`#ERRO: ${resposta}`);
+finalizarAguardar();
+});
+
+return false;
+}
+
 </script>

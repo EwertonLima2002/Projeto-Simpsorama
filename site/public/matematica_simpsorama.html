@@ -9,6 +9,7 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<script src="js/funcoes.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Bitter:ital@1&family=Raleway:wght@100&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -66,6 +67,45 @@
         else{
 
         res.innerHTML = `Você já assistiu a ${total}% dos episódios dos Simpsons.`
+
+        
+        setInterval('oi', 5000)
+
+       fetch("/usuarios/cadastrar_pontos", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+    
+      pontos_Server: total
+    })
+}).then(function (resposta) {
+
+    console.log("resposta: ", resposta);
+
+    if (resposta.ok) {
+
+
+    console.log("Funcionando")
+
+       
+
+        limparFormulario();
+        finalizarAguardar();
+    } else {
+        swal("Ops", "Mais de um usuário com o mesmo login e senha!", "error")
     }
-    }
+}).catch(function (resposta) {
+    console.log(`#ERRO: ${resposta}`);
+    finalizarAguardar();
+});
+
+return false;
+}
+
+ }
+ 
+
+
 </script>
