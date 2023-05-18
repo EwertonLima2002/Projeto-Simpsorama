@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loteria Simspsorama</title>
+    <link rel="stylesheet" href="../css/quiz.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://kit.fontawesome.com/3f0399636b.js" crossorigin="anonymous"></script>
+    <script src="../js/funcoes.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="http://www.chartjs.org/dist/2.7.1/Chart.js"></script>
+    <script src="http://www.chartjs.org/samples/latest/utils.js"></script>
+    
+</head>
+<body>
+    <div class="banner">
+        <div class="navbar">
+            <div class="container">
+    
+    <aside>
+        <p>Menu</p> <div class="nome">
+            <h1>Olá <span id="b_usuario"></span></h1>
+        </div>
+        <a href="dashboard.html">
+            <i class="fa-solid fa-user-tie"></i>
+       Personagens Favoritas
+    </a>
+    <a href="previsao_do_tempo_simpsorama.html">
+        <i class="fa-solid fa-cloud"></i>
+       Previsão do Tempo Simpsorama
+    </a>
+    
+    <a href="fale_conosco.html">
+        <i class="fa-solid fa-phone"></i>
+     Fale com os Simpsons
+    </a>
+    <a href="loteria_simspsorama.html">
+        <i class="fa-solid fa-money-bill-trend-up"></i>
+     Loteria Simspsorama
+    </a>
+    <a href="../index.html">
+        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+       Sair
+    </a>
+    <div class="social">
+        <a href="https://www.instagram.com/ewerton.lima.dev/" target="_blank">
+        <i class="fa-brands fa-instagram"></i>
+       
+    </a>
+    </div>  
+    </aside>
+    
+    <div class="container">
+        <div class="card" id="div_usuario">
+            <div id="fundo">
+        <h3>Loteria Simpsorama</h3>
+        <label >Digite seu primeiro número:</label>
+          <input type="number" id="input_num_1">
+          <br>
+          <label >Digite seu segundo número:</label>
+          <input type="number" id="input_num2">
+          <br>
+          <label >Digite seu terceiro número:</label>
+          <input type="number" id="input_num3">
+          <br>
+          <label >Digite seu quarto número:</label>
+          <input type="number" id="input_num4">
+          <br>
+          <label >Digite seu quinto número:</label>
+          <input type="number" id="input_num5">
+          <br>
+          <label >Digite seu sexto número:</label>
+          <input type="number" id="input_num6">
+          <br>
+          <button onclick="gerar_aleatorios()">Advinhar</button>
+          <div id="resultado">
+
+          </div>
+            </div>
+        </div>
+        <img src="../assents/Gif_homer_cachorro.gif" class="git_homer_dog">
+        <div style="display: none;" id="baloes">
+            <div class="balao"></div>
+            <div class="balao"></div>
+            <div class="balao"></div>
+            <div class="balao"></div>
+            <div class="balao"></div>
+            <div class="balao"></div>
+            <div class="balao"></div>
+            <div class="balao"></div>
+            <div class="balao"></div>
+            <div class="balao"></div>
+            <div class="balao"></div>
+          </div>
+    </div>
+</body>
+</html>
+<script>
+    var usuario = sessionStorage.NOME_USUARIO;
+
+b_usuario.innerHTML = " " + usuario
+
+    function gerar_aleatorios(){
+        var n1 = parseInt(Math.random() * 6 + 1)
+     var n2 = parseInt(Math.random() * 20 + 10)
+     var n3 = parseInt(Math.random() * 34 + 20)
+     var n4 = parseInt(Math.random() * 60 + 35)
+     var n5 = parseInt(Math.random() * 85 + 35)
+     var n6 = parseInt(Math.random() * 80 + 60)
+     var total = [n1 , n2 , n3 , n4 , n5 , n6]
+     var numero_1 = Number(input_num_1.value)
+     var numero_2 = Number(input_num2.value)
+     var numero_3 = Number(input_num3.value)
+     var numero_4 = Number(input_num4.value)
+     var numero_5 = Number(input_num5.value)
+     var numero_6 = Number(input_num6.value)
+     var numero_usuario = [numero_1 , numero_2 , numero_3 , numero_4 , numero_5 , numero_6]
+    var balao = document.getElementById('baloes')
+    var fundo = document.getElementById('fundo')
+    var texto = document.getElementById('resultado')
+    var acertos = 0
+     console.log(total)
+     for(var i = 0; i<numero_usuario.length;i++){
+    if(numero_usuario[i] == total[i]){
+        acertos+=1
+    }
+  
+ 
+     }
+     if(acertos == 0){
+      fundo.style.display = 'none'
+      texto.style.color = 'black'
+      resultado.innerHTML = `<img src="https://img.uncyc.org/weird-pt/thumb/a/a4/Homer_Simpson_Machado.png/200px-Homer_Simpson_Machado.png"
+        class="img"><br>
+    <h3>Ô, droga! Nem um acerto? Eu perdi meu dinheiro todo! Melhor sorte na próxima vez, eu acho...</h3>`
+ 
+}
+  else  if(acertos == 1){
+        fundo.style.display = 'none'
+        resultado.innerHTML = `<img src="https://canal.bufalo.info/wp-content/uploads/2020/01/3a116884945f870924f1ffd3f36fc015-256x300.png"  class="img"><br>
+        <h3>Apesar de ter acertado apenas um número na Mega Millions, Homer Simpson ficou frustrado ao descobrir que seu prêmio foi de apenas 5 dólares e disse<br>
+      Como vou conseguir comprar uma rosquinha com isso?</h3>`
+      musica.play()
+   }
+   else if( acertos == 2){
+        fundo.style.display = 'none'
+    resultado.innerHTML = `<img src="https://2.bp.blogspot.com/-mR786WllPhk/UFeUaG5QOkI/AAAAAAAAANk/1FRpL_q3V_Y/s1600/homer-simpson.gif"  class="img"><br>
+    <h3>Homer Simpson vibrou ao acertar dois números da Mega Millions, aumentando suas expectativas de um prêmio maior. Mas quando ele descobriu que o prêmio para essa faixa era de apenas 15 dólares, sua animação se transformou em frustração. '15 dólares?<br>
+       Eu nem consigo comprar uma pizza com isso!</h3>`
+       musica.play()
+   }
+   else if(acertos == 3){
+        fundo.style.display = 'none'
+    resultado.innerHTML = `<img src="https://3.bp.blogspot.com/-o7p2FXtcoD8/U7vTNRW1tFI/AAAAAAAAALo/vacXokWk5CE/s1600/homer+simpson+grita.png"  class="img"><br>
+    <h3>Homer Simpson teve um motivo para comemorar ao acertar três números na Mega Millions, mas sua felicidade foi rapidamente substituída pela frustração quando ele descobriu que o prêmio para essa faixa era de apenas 50 dólares.<br>
+      'Cinquenta dólares? Eu mal posso comprar uma caixa de cerveja com isso!</h3>`
+      musica.play()
+   }
+   else if(acertos == 4){
+    div_usuario.style.display = "none";
+    resultado.innerHTML = `<img src="https://images.uncyc.org/pt/thumb/7/7c/Homerf.png/300px-Homerf.png"  class="img"><br>
+    <h3>Homer Simpson quase caiu da cadeira ao ver que acertou quatro números na Mega Millions, mas sua empolgação logo se transformou em frustração quando ele descobriu que o prêmio para essa faixa era de apenas 5.000 dólares.<br>
+      'Apenas cinco mil dólares? Eu esperava ganhar o suficiente para me aposentar em uma ilha particular!', resmungou Homer, decepcionado com o resultado.</h3>`
+      musica.play()
+    }
+   else if(acertos == 5){
+    balao.style.display = "block";
+     res.innerHTML = `<img src="https://i.pinimg.com/736x/5e/4a/31/5e4a31e3600a796b163cd306614617cb--homer-simpson-arte-digital.jpg"  class="img"><br>
+     <h3> UHULL Obrigado graças a voce eu ganhei na Mega Millions! Eu finalmente sou um milionário! Woo hoo! Isso é tão emocionante! Eu já posso imaginar todas as coisas incríveis que eu vou comprar. Talvez eu possa até construir uma piscina cheia de cerveja! Ou quem sabe eu possa comprar uma fábrica de rosquinhas só para mim!<br>
+       Ah, eu estou tão feliz que eu poderia explodir! Preciso contar para todo mundo que eu ganhei!</h3>
+     
+       `
+   }
+   else if(acertos == 6){
+ 
+    balao.style.display = "block";
+    vitoria.play()
+    res.innerHTML = `<img src="https://cdn.iset.io/assets/55268/produtos/966/adesivo-para-geladeira-homer-simpson-com-cerveja-3.jpg"  class="img"><br>
+    <h3>Êêêêê!!! Eu ganhei! Eu ganhei! Eu ganhei na loteria!!! Se eu acertei 6 números? SIM!!! Isso mesmo, eu acertei os 6 números e ganhei um prêmio de US$ 300.000.000! Eu não consigo acreditar! Eu finalmente posso viver todos os meus sonhos e desejos mais profundos!<br>
+       Ahh, eu já estou imaginando como vou gastar todo esse dinheiro!</h3>`
+
+   }
+
+
+    }
+</script>
