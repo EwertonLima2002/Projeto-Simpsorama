@@ -20,8 +20,8 @@ router.post("/autenticar", function (req, res) {
     usuarioController.entrar(req, res);
 });
 
-router.post("/cadastrar_pontos", function (req, res) {
-    usuarioController.cadastrar_pontos(req, res);
+router.post("/cadastrar_pontos_loteria", function (req, res) {
+    usuarioController.cadastrar_pontos_loteria(req, res);
 });
 
 router.post("/cadastrar_acertos", function (req, res) {

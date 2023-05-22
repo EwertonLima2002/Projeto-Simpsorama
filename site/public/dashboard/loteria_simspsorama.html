@@ -8,14 +8,13 @@
     <link rel="stylesheet" href="../css/quiz.css">
     <link rel="icon" href="../assents/Icon.svg">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://kit.fontawesome.com/3f0399636b.js" crossorigin="anonymous"></script>
     <script src="../js/funcoes.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
-    <script src="http://www.chartjs.org/dist/2.7.1/Chart.js"></script>
-    <script src="http://www.chartjs.org/samples/latest/utils.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
 </head>
-<body>
+<body onload="obterDadosGraficos()">
     <div class="banner">
         <div class="navbar">
             <div class="container">
@@ -55,7 +54,7 @@
     
     <div class="container">
         <div class="card" id="div_usuario">
-            <div id="fundo">
+            <div id="fundo" >
         <h3>Loteria Simpsorama</h3>
         <label >Digite seu primeiro número:</label>
           <input type="number" id="input_num_1">
@@ -81,6 +80,11 @@
           </div>
             </div>
         </div>
+
+        <div class="grafico" style="display: none;" id="mostrar_grafico">
+            <h4>Media de Acertos</h4>
+            <canvas id="myChartCanvas1" width="400px" height="230px"></canvas>
+        </div>
         <img src="../assents/Gif_homer_cachorro.gif" class="git_homer_dog">
         <div style="display: none;" id="baloes">
             <div class="balao"></div>
@@ -100,12 +104,15 @@
 </html>
 <script>
     var usuario = sessionStorage.NOME_USUARIO;
+    var idUsuario = sessionStorage.ID_USUARIO;
+    
+    console.log(idUsuario)
 
 b_usuario.innerHTML = " " + usuario
 
     function gerar_aleatorios(){
         var n1 = parseInt(Math.random() * 6 + 1)
-     var n2 = parseInt(Math.random() * 20 + 10)
+     var n2 = parseInt(Math.random() * ((20 - 10) + 1) + 10)
      var n3 = parseInt(Math.random() * 34 + 20)
      var n4 = parseInt(Math.random() * 60 + 35)
      var n5 = parseInt(Math.random() * 85 + 35)
@@ -121,24 +128,41 @@ b_usuario.innerHTML = " " + usuario
     var balao = document.getElementById('baloes')
     var fundo = document.getElementById('fundo')
     var texto = document.getElementById('resultado')
+
+    var fundo_branco = document.getElementById('div_usuario')
+    var fundo_grafico = document.getElementById('mostrar_grafico')
+    
     var acertos = 0
      console.log(total)
      for(var i = 0; i<numero_usuario.length;i++){
     if(numero_usuario[i] == total[i]){
         acertos+=1
+
+        console.log(acertos)
     }
   
- 
+
      }
      if(acertos == 0){
-      fundo.style.display = 'none'
+        fundo_branco.style.display = 'none'
+        fundo_grafico.style.display = 'block'
       texto.style.color = 'black'
-      resultado.innerHTML = `<img src="https://img.uncyc.org/weird-pt/thumb/a/a4/Homer_Simpson_Machado.png/200px-Homer_Simpson_Machado.png"
+      Swal.fire({
+  imageUrl: 'data:image/png;base64,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',
+  imageHeight: 250,
+  imageWidth: 250,
+  imageAlt: 'A tall image',
+  text: 'infelizmente Voce não acertou nenhuma😭',
+})    
+
+resultado.innerHTML = `<img src="https://img.uncyc.org/weird-pt/thumb/a/a4/Homer_Simpson_Machado.png/200px-Homer_Simpson_Machado.png"
         class="img"><br>
     <h3>Ô, droga! Nem um acerto? Eu perdi meu dinheiro todo! Melhor sorte na próxima vez, eu acho...</h3>`
  
 }
   else  if(acertos == 1){
+    fundo_branco.style.display = 'none'
+        fundo_grafico.style.display = 'block'
         fundo.style.display = 'none'
         resultado.innerHTML = `<img src="https://canal.bufalo.info/wp-content/uploads/2020/01/3a116884945f870924f1ffd3f36fc015-256x300.png"  class="img"><br>
         <h3>Apesar de ter acertado apenas um número na Mega Millions, Homer Simpson ficou frustrado ao descobrir que seu prêmio foi de apenas 5 dólares e disse<br>
@@ -146,6 +170,8 @@ b_usuario.innerHTML = " " + usuario
       musica.play()
    }
    else if( acertos == 2){
+    fundo_branco.style.display = 'none'
+        fundo_grafico.style.display = 'block'
         fundo.style.display = 'none'
     resultado.innerHTML = `<img src="https://2.bp.blogspot.com/-mR786WllPhk/UFeUaG5QOkI/AAAAAAAAANk/1FRpL_q3V_Y/s1600/homer-simpson.gif"  class="img"><br>
     <h3>Homer Simpson vibrou ao acertar dois números da Mega Millions, aumentando suas expectativas de um prêmio maior. Mas quando ele descobriu que o prêmio para essa faixa era de apenas 15 dólares, sua animação se transformou em frustração. '15 dólares?<br>
@@ -153,6 +179,8 @@ b_usuario.innerHTML = " " + usuario
        musica.play()
    }
    else if(acertos == 3){
+    fundo_branco.style.display = 'none'
+        fundo_grafico.style.display = 'block'
         fundo.style.display = 'none'
     resultado.innerHTML = `<img src="https://3.bp.blogspot.com/-o7p2FXtcoD8/U7vTNRW1tFI/AAAAAAAAALo/vacXokWk5CE/s1600/homer+simpson+grita.png"  class="img"><br>
     <h3>Homer Simpson teve um motivo para comemorar ao acertar três números na Mega Millions, mas sua felicidade foi rapidamente substituída pela frustração quando ele descobriu que o prêmio para essa faixa era de apenas 50 dólares.<br>
@@ -160,6 +188,8 @@ b_usuario.innerHTML = " " + usuario
       musica.play()
    }
    else if(acertos == 4){
+    fundo_branco.style.display = 'none'
+        fundo_grafico.style.display = 'block'
     div_usuario.style.display = "none";
     resultado.innerHTML = `<img src="https://images.uncyc.org/pt/thumb/7/7c/Homerf.png/300px-Homerf.png"  class="img"><br>
     <h3>Homer Simpson quase caiu da cadeira ao ver que acertou quatro números na Mega Millions, mas sua empolgação logo se transformou em frustração quando ele descobriu que o prêmio para essa faixa era de apenas 5.000 dólares.<br>
@@ -167,6 +197,8 @@ b_usuario.innerHTML = " " + usuario
       musica.play()
     }
    else if(acertos == 5){
+    fundo_branco.style.display = 'none'
+        fundo_grafico.style.display = 'block'
     balao.style.display = "block";
      res.innerHTML = `<img src="https://i.pinimg.com/736x/5e/4a/31/5e4a31e3600a796b163cd306614617cb--homer-simpson-arte-digital.jpg"  class="img"><br>
      <h3> UHULL Obrigado graças a voce eu ganhei na Mega Millions! Eu finalmente sou um milionário! Woo hoo! Isso é tão emocionante! Eu já posso imaginar todas as coisas incríveis que eu vou comprar. Talvez eu possa até construir uma piscina cheia de cerveja! Ou quem sabe eu possa comprar uma fábrica de rosquinhas só para mim!<br>
@@ -175,7 +207,8 @@ b_usuario.innerHTML = " " + usuario
        `
    }
    else if(acertos == 6){
- 
+    fundo_branco.style.display = 'none'
+        fundo_grafico.style.display = 'block'
     balao.style.display = "block";
     vitoria.play()
     res.innerHTML = `<img src="https://cdn.iset.io/assets/55268/produtos/966/adesivo-para-geladeira-homer-simpson-com-cerveja-3.jpg"  class="img"><br>
@@ -183,7 +216,210 @@ b_usuario.innerHTML = " " + usuario
        Ahh, eu já estou imaginando como vou gastar todo esse dinheiro!</h3>`
 
    }
+   setInterval('oi', 5000)
+
+fetch("/usuarios/cadastrar_pontos_loteria", {
+method: "POST",
+headers: {
+ "Content-Type": "application/json"
+},
+body: JSON.stringify({
+
+pontos_Server: acertos,
+id_Server: idUsuario
+
+})
+}).then(function (resposta) {
+
+console.log("resposta: ", resposta);
+
+if (resposta.ok) {
 
 
+console.log("Funcionando")
+
+
+
+ limparFormulario();
+ finalizarAguardar();
+} else {
+ swal("Ops", "Mais de um usuário com o mesmo login e senha!", "error")
+}
+}).catch(function (resposta) {
+console.log(`#ERRO: ${resposta}`);
+finalizarAguardar();
+});
+
+return false;
+}
+
+
+
+
+
+b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+
+let proximaAtualizacao;
+
+window.onload = obterDadosGraficos();
+
+function obterDadosGraficos() {
+    obterDadosGrafico(1)
+   
+}
+
+
+
+
+function obterDadosGrafico(idAquario) {
+
+   
+
+    if (proximaAtualizacao != undefined) {
+        clearTimeout(proximaAtualizacao);
     }
+
+    fetch(`/medidas/buscar_maior_pontuacao/${idAquario}`, { cache: 'no-store' }).then(function (response) {
+        if (response.ok) {
+            response.json().then(function (resposta) {
+                console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                resposta.reverse();
+
+                plotarGrafico(resposta, idAquario);
+            });
+        } else {
+            console.error('Nenhum dado encontrado ou erro na API');
+        }
+    })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        });
+}
+
+// Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
+// Configura o gráfico (cores, tipo, etc), materializa-o na página e, 
+// A função *plotarGrafico* também invoca a função *atualizarGrafico*
+function plotarGrafico(resposta, idAquario) {
+
+    console.log('iniciando plotagem do gráfico...');
+
+    // Criando estrutura para plotar gráfico - labels
+    let labels = [];
+
+    // Criando estrutura para plotar gráfico - dados
+    let dados = {
+        labels: labels,
+        datasets: [{
+            label: '',
+            data: [],
+            fill: false,
+            borderColor: '#ffff',
+            backgroundColor:  [ '#ffff'],
+            tension: 0.1
+        },
+        {
+            label: 'Média de Acertos',
+            data: [],
+            fill: false,
+            borderColor: '#000000',
+            backgroundColor:  [ '#00BFFF', '#00FF7F', '#FF4500', '#00FF00', '#4B0082'],
+            tension: 0.1
+        }]
+    };
+
+    console.log('----------------------------------------------')
+    console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
+    console.log(resposta)
+
+    // Inserindo valores recebidos em estrutura para plotar o gráfico
+    for (i = 0; i < resposta.length; i++) {
+        var registro = resposta[i];
+        labels.push(registro.nome);
+        dados.datasets[0].data.push(registro.nome);
+        dados.datasets[1].data.push(registro.pontos);
+    }
+
+    console.log('----------------------------------------------')
+    console.log('O gráfico será plotado com os respectivos valores:')
+    console.log('Labels:')
+    console.log(labels)
+    console.log('Dados:')
+    console.log(dados.datasets)
+    console.log('----------------------------------------------')
+
+    // Criando estrutura para plotar gráfico - config
+    const config = {
+        type: 'line',
+        data: dados,
+    };
+
+    // Adicionando gráfico criado em div na tela
+    let myChart = new Chart(
+        document.getElementById(`myChartCanvas1`),
+        config
+    );
+
+    setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
+}
+
+
+// Esta função *atualizarGrafico* atualiza o gráfico que foi renderizado na página,
+// buscando a última medida inserida em tabela contendo as capturas, 
+
+//     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
+//     Para ajustar o "select", ajuste o comando sql em src/models
+function atualizarGrafico(idAquario, dados, myChart) {
+
+
+
+    fetch(`/medidas/tempo-real/${idAquario}`, { cache: 'no-store' }).then(function (response) {
+        if (response.ok) {
+            response.json().then(function (novoRegistro) {
+
+                console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+                console.log(`Dados atuais do gráfico:`);
+                console.log(dados);
+
+                let avisoCaptura = document.getElementById(`avisoCaptura${idAquario}`)
+                avisoCaptura.innerHTML = ""
+
+
+                if (novoRegistro[0].momento_grafico == dados.labels[dados.labels.length - 1]) {
+                    console.log("---------------------------------------------------------------")
+                    console.log("Como não há dados novos para captura, o gráfico não atualizará.")
+                    avisoCaptura.innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Foi trazido o dado mais atual capturado pelo sensor. <br> Como não há dados novos a exibir, o gráfico não atualizará."
+                    console.log("Horário do novo dado capturado:")
+                    console.log(novoRegistro[0].momento_grafico)
+                    console.log("Horário do último dado capturado:")
+                    console.log(dados.labels[dados.labels.length - 1])
+                    console.log("---------------------------------------------------------------")
+                } else {
+                    // tirando e colocando valores no gráfico
+                    dados.labels.shift(); // apagar o primeiro
+                    dados.labels.push(novoRegistro[0].momento_grafico); // incluir um novo momento
+
+                    dados.datasets[0].data.shift();  // apagar o primeiro de umidade
+                    dados.datasets[0].data.push(novoRegistro[0].umidade); // incluir uma nova medida de umidade
+
+                    dados.datasets[1].data.shift();  // apagar o primeiro de temperatura
+                    dados.datasets[1].data.push(novoRegistro[0].temperatura); // incluir uma nova medida de temperatura
+
+                    myChart.update();
+                }
+
+                // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+                proximaAtualizacao = setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
+            });
+        } else {
+            console.error('Nenhum dado encontrado ou erro na API');
+            // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+            proximaAtualizacao = setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
+        }
+    })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        });
+
+}
+    
 </script>

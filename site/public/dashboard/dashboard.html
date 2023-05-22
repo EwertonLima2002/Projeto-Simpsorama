@@ -16,7 +16,7 @@
     
    
 </head>
-<body>
+<body onload="obterDadosapi()">
     <div class="banner">
         <div class="navbar">
             <div class="container">
@@ -387,6 +387,7 @@
     </div>
     </div>    
     <h1 class="texto_votacao">Votação dos Personagens</h1>
+   <a href=""><h1 class="mais_votado">Veja o personagem favorito: <span id="mais_votado"></span></h1></a>
           
 <div class="votos_homer_simpson">
     <h3>Homer Simpson</h3>
@@ -433,7 +434,8 @@ b_usuario.innerHTML = sessionStorage.NOME_USUARIO
 
 let proximaAtualizacao;
 
-window.onload = obterDadosGrafico(1);
+window.onload = obterDadosGrafico(1)
+
 
 
 function obterDadosGrafico(idAquario) {
@@ -457,6 +459,8 @@ function obterDadosGrafico(idAquario) {
             console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
         });
 }
+
+
 
 // Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
 // Configura o gráfico (cores, tipo, etc), materializa-o na página e, 
@@ -586,4 +590,8 @@ function atualizarGrafico(idAquario, dados) {
         });
 
 }
+
+
+
+
 </script>

@@ -100,19 +100,21 @@ function cadastrar(req, res) {
     }
 }
 
-function cadastrar_pontos(req, res) {
+function cadastrar_pontos_loteria(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo matematica_simprorama.html
-var pontos = req.body.pontos_Server
+var pontos = req.body.pontos_Server;
+var idUsuario = req.body.id_Server;
 
 
     // Faça as validações dos valores
     if (pontos == undefined) {
         res.status(400).send("Seu nome está undefined!");
   
-    }  else {
+    } 
+    else {
         
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrar_pontos(pontos)
+        usuarioModel.cadastrar_pontos_loteria(pontos , idUsuario)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -161,11 +163,40 @@ var acertos = req.body.acertos_Server
     }
 }
 
+
+
+function procurar_favorito(req, res) {
+    var idUsuario = req.params.idUsuario;
+
+    avisoModel.procurar_favorito(idUsuario)
+        .then(
+            function (resultado) {
+                if (resultado.length > 0) {
+                    res.status(200).json(resultado);
+                } else {
+                    res.status(204).send("Nenhum resultado encontrado!");
+                }
+            }
+        )
+        .catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "Houve um erro ao buscar os avisos: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
+
 module.exports = {
     entrar,
     cadastrar,
     listar,
     testar,
-    cadastrar_pontos,
+    cadastrar_pontos_loteria,
     cadastrar_acertos,
+    procurar_favorito
 }

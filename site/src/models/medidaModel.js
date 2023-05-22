@@ -21,25 +21,8 @@ function buscarUltimasMedidas(idAquario, limite_linhas) {
     return database.executar(instrucaoSql);
 }
 
-function buscar_pontuacao(idAquario, limite_linhas) {
 
-    instrucaoSql = ''
-
-    if (process.env.AMBIENTE_PROCESSO == "producao") {
-        instrucaoSql = `select sum(qtd_episodios_assistidos) as episodios from pontuacoes group by qtd_episodios_assistidos;`;
-
-    }
-     else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-        instrucaoSql = `select qtd_episodios_assistidos as episodios from pontuacoes;`;
-    } else {
-        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
-        return
-    }
-
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
-    return database.executar(instrucaoSql);
-}
-function buscarMedidasEmTempoReal(idAquario) {
+function buscar_maior_pontuacao(idAquario) {
 
     instrucaoSql = ''
 
@@ -53,13 +36,7 @@ function buscarMedidasEmTempoReal(idAquario) {
                     order by id desc`;
 
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-        instrucaoSql = `select 
-        dht11_temperatura as temperatura, 
-        dht11_umidade as umidade,
-                        DATE_FORMAT(momento,'%H:%i:%s') as momento_grafico, 
-                        fk_aquario 
-                        from medida where fk_aquario = ${idAquario} 
-                    order by id desc limit 1`;
+        instrucaoSql = `select usuario.nome as nome , avg(pontuacoes.pontos_loteria_simpsorama) as pontos from pontuacoes join usuario on id = fk_usuario group by usuario.nome;`;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
         return
@@ -70,8 +47,22 @@ function buscarMedidasEmTempoReal(idAquario) {
 }
 
 
+
+
+function procurar_favorito() {
+    console.log("ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
+    var instrucao = `
+    select personagem.nome as nome ,  max(fkpersonagem) as maior_voto
+    from usuario join personagem on idpersonagem = fkpersonagem;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+
 module.exports = {
     buscarUltimasMedidas,
-    buscarMedidasEmTempoReal,
-    buscar_pontuacao
+    buscar_maior_pontuacao,
+    procurar_favorito
+  
 }

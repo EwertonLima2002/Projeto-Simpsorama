@@ -44,6 +44,9 @@ function listarPorUsuario(req, res) {
         );
 }
 
+
+
+
 function pesquisarDescricao(req, res) {
     var descricao = req.params.descricao;
 
@@ -139,4 +142,5 @@ module.exports = {
     publicar,
     editar,
     deletar
+    
 }

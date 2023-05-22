@@ -41,13 +41,13 @@ function buscarMedidasEmTempoReal(req, res) {
     });
 }
 
-function buscar_pontuacao(req, res) {
+function buscar_maior_pontuacao(req, res) {
 
     var idAquario = req.params.idAquario;
 
     console.log(`Recuperando medidas em tempo real`);
 
-    medidaModel.buscar_pontuacao(idAquario).then(function (resultado) {
+    medidaModel.buscar_maior_pontuacao(idAquario).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -60,9 +60,10 @@ function buscar_pontuacao(req, res) {
     });
 }
 
+
 module.exports = {
     buscarUltimasMedidas,
     buscarMedidasEmTempoReal,
-    buscar_pontuacao
+    buscar_maior_pontuacao
 
 }

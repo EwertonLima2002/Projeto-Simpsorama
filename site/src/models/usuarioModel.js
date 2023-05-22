@@ -32,13 +32,13 @@ function cadastrar(nome, email, senha, fkpersonagem) {
     return database.executar(instrucao);
 }
 
-function cadastrar_pontos(qtd_episodios_assistidos) {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", qtd_episodios_assistidos);
+function cadastrar_pontos_loteria(pontos_loteria_simpsorama , idUsuario) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", pontos_loteria_simpsorama , idUsuario);
     
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     //  e na ordem de inserção dos dados.
     var instrucao = `
-        INSERT INTO pontuacoes (qtd_episodios_assistidos) VALUES ('${qtd_episodios_assistidos}');
+        INSERT INTO pontuacoes (pontos_loteria_simpsorama , fk_usuario) VALUES ('${pontos_loteria_simpsorama}' , '${idUsuario}');
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -59,6 +59,6 @@ module.exports = {
     entrar,
     cadastrar,
     listar,
-    cadastrar_pontos,
+    cadastrar_pontos_loteria,
     cadastrar_acertos
 };

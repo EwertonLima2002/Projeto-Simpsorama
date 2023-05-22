@@ -167,15 +167,15 @@ input:checked * .slider::before{
         height: 500px;
         
     }
-    form{
+    .editar{
         position: relative;
         top: -600px; 
-        width: 450px;
-        height: 440px;
+        width: 410px;
+        height: 470px;
         background-color: #fff;
         border-radius: 10px;
     }
-    form h1{
+    .editar h1{
         text-align: center;
         color: #FFA500;
         font-size: 25px;
@@ -193,14 +193,14 @@ input:checked * .slider::before{
     display: flex;
     flex-direction: column;
     align-items: baseline;
-    margin: 20px;
+    margin: 10px 10px;
   }
   .form_style{
     outline: none;
     border: 2px solid #000;
     box-shadow: 3px 4px 0px 1px #000;
     width: 350px;
-    padding: 12px 10px;
+    padding: 5px 10px;
     border-radius: 4px;
     font-size: 15px;
   }
