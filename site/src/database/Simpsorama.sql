@@ -1,6 +1,9 @@
 create database simpsorama;
 use simpsorama;
 
+drop database simpsorama;
+
+
 create table personagem(
 idpersonagem int primary key auto_increment,
 nome varchar(45)
@@ -16,7 +19,7 @@ foreign key(fkpersonagem) references personagem(idpersonagem)
 );
 
 create table aviso(
-idaviso int primary key auto_increment,
+id int primary key auto_increment,
 titulo varchar(45),
 descricao varchar(250),
 fkusuario int,
@@ -25,14 +28,23 @@ foreign key(fkusuario) references usuario(id)
 create table pontuacoes(
 idpontuacao int primary key auto_increment,
 pontos_loteria_simpsorama int,
-qtd_episodios_assistidos float
+fk_usuario int,
+foreign key(fk_usuario) references usuario(id)
 );
 
 
 insert into personagem values
-(null , 'Bart'),
 (null , 'Lisa'),
-(null , 'Maggie'),
+(null , 'Homer'),
 (null , 'Marge'),
-(null , 'Homer');
+(null , 'Bart'),
+(null , 'Maggie');
 
+
+alter table usuario modify column senha varchar(512);
+
+insert into usuario values
+(null , 'Lucas' , 'lucas@gmail.com' , '12345678' , 1);
+
+insert into pontuacoes values
+(null , 5 , 2);
