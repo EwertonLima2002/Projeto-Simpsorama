@@ -96,11 +96,12 @@ function publicar(req, res) {
     }
 }
 
-function editar(req, res) {
-    var novaDescricao = req.body.descricao;
-    var idAviso = req.params.idAviso;
+function editar_publicacao(req, res) {
+    var titulo = req.body.tituloSever
+    var descricao = req.body.descricaoServer
+    var idAviso = req.body.idSever;
 
-    avisoModel.editar(novaDescricao, idAviso)
+    avisoModel.editar_publicacao(titulo, descricao , idAviso)
         .then(
             function (resultado) {
                 res.json(resultado);
@@ -140,7 +141,7 @@ module.exports = {
     listarPorUsuario,
     pesquisarDescricao,
     publicar,
-    editar,
+    editar_publicacao,
     deletar
     
 }

@@ -68,44 +68,9 @@
 
         res.innerHTML = `Você já assistiu a ${total}% dos episódios dos Simpsons.`
 
-        
-        setInterval('oi', 5000)
-
-       fetch("/usuarios/cadastrar_pontos", {
-    method: "POST",
-    headers: {
-        "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-    
-      pontos_Server: total
-    })
-}).then(function (resposta) {
-
-    console.log("resposta: ", resposta);
-
-    if (resposta.ok) {
-
-
-    console.log("Funcionando")
-
-       
-
-        limparFormulario();
-        finalizarAguardar();
-    } else {
-        swal("Ops", "Mais de um usuário com o mesmo login e senha!", "error")
-    }
-}).catch(function (resposta) {
-    console.log(`#ERRO: ${resposta}`);
-    finalizarAguardar();
-});
-
-return false;
-}
-
+   
  }
- 
+  }
 
 
 </script>

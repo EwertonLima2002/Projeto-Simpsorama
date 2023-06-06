@@ -5,229 +5,121 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="http://www.chartjs.org/dist/2.7.1/Chart.js"></script>
-<script src="http://www.chartjs.org/samples/latest/utils.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <style>
+.titulo {
+    color: #FFF;
+    text-align: center;
+    font-size: 26px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    letter-spacing: 1px;
+    font-weight: 700;
+}
+
+.div_crud_alterar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+   .div_crud_alterar input {
+    color: #FFF;
+    border-radius: 25px;
+    background-color: #151515;
+    border: transparent;
+    border-bottom: 2px solid #E0E0E0;
+    transition: 0.5s ease-in;
+    padding: 12px;
+    outline: none;
+    width: 25vw;
+    margin-top: 21px;
+}
+
+ .div_crud_alterar input:hover {
+    border-radius: 15px;
+    transition: 0.5s ease-in;
+    cursor: pointer;
+}
+.div_crud_alterar input.erro {
+    border: 2px solid #FF5555;
+}
+.div_crud_alterar input.correto {
+    border: 2px solid #74C365;
+}
+    </style>
 </head>
 <body>
-    <p id="p_episodios">Quantos Epísodios você já assistiu:</p>
-    <input type="text" class="input_episodio" id="input_episodio" placeholder="Máximo 717">
-    <button onclick="calcular()">Calcular</button>
-    <div id="res"></div>
-    <div id="grafico_comparacao_usuario" style="display: none;">
-    <canvas id="myChart" width="800px" height="250px"> </canvas>
+    
 </body>
 </html>
 <script>
-    function calcular(){
-        var total_episodios = 717
-        var qtd_episodios = Number(input_episodio.value);
-        var total = (qtd_episodios/ total_episodios) * 100
-        total = total.toFixed(2)
-        res.innerHTML = ''
-
-        if(qtd_episodios >total_episodios){
-            swal("Ops", "Verifique os dados e tente novamente, Quantidade inválida", "error")
-        }
-        else{
-
-        res.innerHTML = ` <div id="grafico">Você já assistiu a ${total}% dos episódios dos Simpsons. </div>
-        <br>
-        <button onclick="grafico_comparacao()" id="btn">Veja sua comparação com outros usuarios</button>`
-
-        
-        setInterval('oi', 5000)
-
-       fetch("/usuarios/cadastrar_pontos", {
-    method: "POST",
-    headers: {
-        "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-    
-      pontos_Server: total
-    })
-}).then(function (resposta) {
-
-    console.log("resposta: ", resposta);
-
-    if (resposta.ok) {
-
-
-    console.log("Funcionando")
-
-       
-
-        limparFormulario();
-        finalizarAguardar();
-    } else {
-        swal("Ops", "Mais de um usuário com o mesmo login e senha!", "error")
-    }
-}).catch(function (resposta) {
-    console.log(`#ERRO: ${resposta}`);
-    finalizarAguardar();
-});
-
-return false;
-}
-
- }
- 
-function grafico_comparacao(){
-
-  var pontos_usuario = document.getElementById('grafico')
-  var botao = document.getElementById('btn')
-  var grafic = document.getElementById('grafico_comparacao_usuario')
-
-  pontos_usuario.style.display = 'none'
-  botao.style.display ='none'
- res.innerHTML = ' '
-
-
-
-  let proximaAtualizacao;
-
-window.onload = obterDadosGrafico(1);
-
-
-function obterDadosGrafico(idAquario) {
-
-    if (proximaAtualizacao != undefined) {
-        clearTimeout(proximaAtualizacao);
-    }
-
-    fetch(`/medidas/buscar_pontuacao/${idAquario}`, { cache: 'no-store' }).then(function (response) {
-        if (response.ok) {
-            response.json().then(function (resposta) {
-                console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                plotarGrafico(resposta, idAquario);
-                
-            });
-        } else {
-            console.error('Nenhum dado encontrado ou erro na API');
-        }
-    })
-        .catch(function (error) {
-            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-        });
-}
-
-// Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
-// Configura o gráfico (cores, tipo, etc), materializa-o na página e, 
-// A função *plotarGrafico* também invoca a função *atualizarGrafico*
-function plotarGrafico(resposta, idAquario) {
-    console.log('iniciando plotagem do gráfico...');
-
-    var dados = {
-        labels: [],
-        datasets: [
-            {
-                label: '',
-                backgroundColor: '#ffffff',
-                data: []
-            },
-            {
-                yAxisID: 'y-totalpersonagens',
-                label: 'Personagem Favorito',
-                backgroundColor:  [ '#FF1493', '#FFFF00', '#FF4500', '#00FF00', '#4B0082'],
-                fill: true,
-                data: []
-            }
-        ]
-    };
-
-    for (i = 0; i < resposta.length; i++) {
-        var registro = resposta[i];
-
-        console.log(registro)
-        dados.labels.push(registro.personagem);
-        dados.datasets[0].data.push(registro.personagem);
-        dados.datasets[1].data.push(registro.voto);
-      
-
-     
-    }
-
-    console.log(JSON.stringify(dados));
-
-    var ctx = myChart.getContext('2d');
-    window.myChart = Chart.Bar(ctx, {
-        data: dados,
-        options: {
-            responsive: true,
-            animation: { duration: 500 },
-            hoverMode: 'index',
-            stacked: false,
-            title: {
-                display: true,
-                text: 'Os Personagens mais Escolhidos'
-            },
-            scales: {
-                yAxes: [{
-                    type: 'linear',
-                    display: true,
-                    position: 'left',
-                    id: 'y-totalpersonagens',
-                    ticks: {
-                        beginAtZero: true,
-                        max: 50,
-                        min: 0
-                    }
-                }, {
-                    display: false,
-                }],
-            }
-        }
-    });
-
-  setInterval(atualizarGrafico(idAquario, dados), 4000);
-}
-
-
-// Esta função *atualizarGrafico* atualiza o gráfico que foi renderizado na página,
-// buscando a última medida inserida em tabela contendo as capturas, 
-
-//     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
-//     Para ajustar o "select", ajuste o comando sql em src/models
-function atualizarGrafico(idAquario, dados) {
-
-    fetch(`/medidas/buscar_pontuacao/${idAquario}`, { cache: 'no-store' }).then(function (response) {
-        if (response.ok) {
-            response.json().then(function (novoRegistro) {
-
-                console.log(`Dados recebidos Atualizar  Graficos: ${JSON.stringify(novoRegistro)}`);
-                console.log(dados);
-
-            for (i = 0; i < novoRegistro.length; i++) {
-                var registro = novoRegistro[i];
-                // tirando e colocando valores no gráfico
-                dados.labels.shift(); // apagar o primeiro
-                dados.labels.push(registro.personagem);// incluir um novo momento
-                
-                dados.datasets[0].data.shift();  // apagar o primeiro de umidade
-                dados.datasets[0].data.push(registro.personagem); // incluir uma nova medida de umidade
-                
-                dados.datasets[1].data.shift(); 
-                dados.datasets[1].data.push(registro.voto);
-            }   
+   
+   Swal.fire({
+            title: '<span class="titulo">Editar Publicação</span>',
+            html: `
+          <div class="div_crud_alterar">
             
-                window.myChart.update();
+            <input type="text" id="input_titulo" onkeyup="validar_titulo()" placeholder="Titulo" />
+          </div>
+          <div class="div_crud_alterar">
+            <input type="email" id="input_descricao" onkeyup="validar_descicao()" placeholder="Descrição" />
+          </div>
+         
+        `,
+        background: '#151515',
+            color: '#FFF',
+            showCancelButton: true,
+            confirmButtonText: 'Alterar',
+            cancelButtonText: 'Cancelar',
+            confirmButtonColor: '#74C365',
+            cancelButtonColor: '#FF5555',
+            preConfirm: () => {
+                var titulo = document.getElementById('input_titulo').value;
+                var descricao = document.getElementById('input_descricao').value;
 
-                // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                proximaAtualizacao = setTimeout(() => atualizarGrafico(idAquario, dados), 2000);
-            });
-        } else {
-            console.error('Nenhum dado encontrado ou erro na API');
-            // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-            proximaAtualizacao = setTimeout(() => atualizarGrafico(idAquario, dados), 200000);
-        }
-    })
-        .catch(function (error) {
-            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+                alterarUsuario(idAviso);
+            }
         });
 
-         }
+        function validar_titulo(){
+            var input_titulo = document.getElementById('input_titulo')
+            var titulo = input_titulo.value
 
-}
+            if(titulo == ""){
+                input_titulo.classList.remove('correto');
+                input_titulo.classList.add('erro');
+                input_titulo.placeholder = 'Campo vazio';
+            }
+            else if(titulo.length < 3){
+                input_titulo.classList.remove('correto');
+                input_titulo.classList.add('erro');
+                input_titulo.placeholder = 'Campo vazio';
+            }
+            else{
+                input_titulo.classList.remove('erro');
+                input_titulo.classList.add('correto');
+                input_titulo.placeholder = 'Campo vazio';
+            }
+        }
 
-
+        function validar_descicao(){
+            var input_descricao = document.getElementById('input_descricao')
+            var descricao = input_descricao.value
+            
+            if(descricao == ""){
+                input_descricao.classList.remove('correto');
+                input_descricao.classList.add('erro');
+                input_descricao.placeholder = 'Campo vazio';
+            }
+            else if(descricao.length >= 255){
+                input_descricao.classList.remove('correto');
+                input_descricao.classList.add('erro');
+                input_descricao.placeholder = 'Campo vazio';
+            }
+            else{
+                input_descricao.classList.remove('erro');
+                input_descricao.classList.add('correto');
+                input_descricao.placeholder = 'Campo vazio';
+            }
+        }
 </script>

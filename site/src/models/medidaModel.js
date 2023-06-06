@@ -49,11 +49,15 @@ function buscar_maior_pontuacao(idAquario) {
 
 
 
-function procurar_favorito() {
+function maior_voto(idUsuario) {
     console.log("ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
     var instrucao = `
-    select personagem.nome as nome ,  max(fkpersonagem) as maior_voto
-    from usuario join personagem on idpersonagem = fkpersonagem;
+    select p.nome as nome, COUNT(*) AS maior_voto
+from usuario as u
+join personagem as p on u.fkpersonagem = p.idpersonagem
+group by u.fkpersonagem
+order by maior_voto desc
+limit 1;
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -63,6 +67,6 @@ function procurar_favorito() {
 module.exports = {
     buscarUltimasMedidas,
     buscar_maior_pontuacao,
-    procurar_favorito
+    maior_voto
   
 }

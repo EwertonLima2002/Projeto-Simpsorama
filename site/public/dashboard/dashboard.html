@@ -13,16 +13,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
     <script src="http://www.chartjs.org/dist/2.7.1/Chart.js"></script>
     <script src="http://www.chartjs.org/samples/latest/utils.js"></script>
-    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
    
 </head>
-<body onload="obterDadosapi()">
+<body onload="obterDadosapi() , buscar_api()">
     <div class="banner">
         <div class="navbar">
             <div class="container">
     
     <aside>
-        <p>Menu</p> <div class="nome">
+        <p></p> <div class="nome">
+            <img src="..//assents/logo_pag_simpsons.png" class="img_aside">
             <h1>Olá <span id="b_usuario"></span></h1>
         </div>
         <a href="dashboard.html">
@@ -387,7 +388,7 @@
     </div>
     </div>    
     <h1 class="texto_votacao">Votação dos Personagens</h1>
-   <a href=""><h1 class="mais_votado">Veja o personagem favorito: <span id="mais_votado"></span></h1></a>
+   <h1 class="mais_votado" onclick="buscar_api()">Veja o personagem favorito: <span id="mais_votado"></span></h1>
           
 <div class="votos_homer_simpson">
     <h3>Homer Simpson</h3>
@@ -415,10 +416,23 @@
 </div>
 
 
-          
+<div style="display: none;" id="baloes">
+    <div class="balao"></div>
+    <div class="balao"></div>
+    <div class="balao"></div>
+    <div class="balao"></div>
+    <div class="balao"></div>
+    <div class="balao"></div>
+    <div class="balao"></div>
+    <div class="balao"></div>
+    <div class="balao"></div>
+    <div class="balao"></div>
+    <div class="balao"></div>
+  </div>
 </body>
 </html>
 <script>
+      baloes.style.display = 'none'
       var usuario = sessionStorage.NOME_USUARIO;
       var votos_homer = document.getElementById('votos_homer')
       var votos_lisa = document.getElementById('votos_lisa')
@@ -459,12 +473,103 @@ function obterDadosGrafico(idAquario) {
             console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
         });
 }
+var idUsuario = sessionStorage.ID_USUARIO
+function buscar_api(idUsuario){
+   // 0 -Bart 1- maggie 2- Marge 3- lisa 4 -) homer
+    var imagems = ['https://i.pinimg.com/originals/47/17/7a/47177a200630b6bcafc7b037b65619f6.gif',
+'https://37.media.tumblr.com/a3977656dece1417726e6d9effce0f41/tumblr_mn5i5nAhHJ1rp0vkjo1_400.gif' ,
+'https://i.gifer.com/MGxX.gif' , 'https://media.tenor.com/k5zebcFMGdIAAAAM/crush-love.gif' , 
+'https://pa1.aminoapps.com/6421/be7fe5c61f645c0bff44a3a4016269d3aed43d0f_hq.gif'
+]
 
+if (proximaAtualizacao != undefined) {
+    clearTimeout(proximaAtualizacao);
+}
 
+fetch(`/medidas/maior_voto/${sessionStorage.ID_USUARIO}`, { cache: 'no-store' }).then(function (response) {
+    if (response.ok) {
+        response.json().then(function (resposta) {
+            baloes.style.display = 'block'
 
-// Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
-// Configura o gráfico (cores, tipo, etc), materializa-o na página e, 
-// A função *plotarGrafico* também invoca a função *atualizarGrafico*
+            for(var i = 0; i<resposta.length;i++){
+
+                if(resposta[i].nome == 'Maggie'){
+                    Swal.fire({
+  title: 'O Personagem Favorito é',
+  background: '#151515',
+  color: '#FFF',
+  confirmButtonColor: '#87CEEB',
+  html:
+    `<img src="${imagems[1]}" width="300px"><br>
+    <h3>${resposta[i].nome}</h3>
+    <h4> ${resposta[i].maior_voto} Votos </h4>`,
+  
+})
+                }
+                else if (resposta[i].nome == 'Lisa'){
+                    Swal.fire({
+  title: 'O Personagem Favorito é',
+  background: '#151515',
+  color: '#FFF',
+  confirmButtonColor: '#87CEEB',
+  html:
+    `<img src="${imagems[3]}" width="300px"><br>
+    <h3>${resposta[i].nome}</h3>
+    <h4> ${resposta[i].maior_voto} Votos </h4>`,
+  
+})
+                }
+                else if(resposta[i].nome == 'Homer'){
+                    Swal.fire({
+  title: 'O Personagem Favorito é',
+  background: '#151515',
+  color: '#FFF',
+  confirmButtonColor: '#87CEEB',
+  html:
+    `<img src="${imagems[4]}" width="300px"><br>
+    <h3>${resposta[i].nome}</h3>
+    <h4> ${resposta[i].maior_voto} Votos </h4>`,
+  
+})
+                }
+                else if(resposta[i].nome == 'Bart'){
+                    Swal.fire({
+  title: 'O Personagem Favorito é',
+  background: '#151515',
+  color: '#FFF',
+  confirmButtonColor: '#87CEEB',
+  html:
+    `<img src="${imagems[0]}" width="300px"><br>
+    <h3>${resposta[i].nome}</h3>
+    <h4> ${resposta[i].maior_voto} Votos </h4>`,
+  
+})
+                }
+                else if(resposta[i].nome == 'Marge'){
+                    Swal.fire({
+  title: 'O Personagem Favorito é',
+  background: '#151515',
+  color: '#FFF',
+  confirmButtonColor: '#87CEEB',
+  html:
+    `<img src="${imagems[2]}" width="300px"><br>
+    <h3>${resposta[i].nome}</h3>
+    <h4> ${resposta[i].maior_voto} Votos </h4>`,
+  
+})
+      
+                }
+           
+            }
+        });
+    } else {
+        console.error('Nenhum dado encontrado ou erro na API');
+    }
+})
+    .catch(function (error) {
+        console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+    });
+}
 function plotarGrafico(resposta, idAquario) {
     console.log('iniciando plotagem do gráfico...');
 

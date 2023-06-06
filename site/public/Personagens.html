@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personagens</title>
+    <link rel="stylesheet" href="css/personagens.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+</head>
+<body>
+    <div class="page-wrapper">
+        <div class="nav-wrapper">
+          <div class="grad-bar"></div>
+          <nav class="navbar">
+            <img src="assents/Logo.png" alt="" class="img">
+            <div class="menu-toggle" id="mobile-menu">
+              <span class="bar"></span>
+              <span class="bar"></span>
+              <span class="bar"></span>
+            </div>
+            <ul class="nav no-search">
+              <li class="nav-item"><a href="index.html">Inicio</a></li>
+              <li class="nav-item"><a href="cadastro.html">Cadastro</a></li>
+              <li class="nav-item"><a href="login.html">Login</a></li>
+              <li class="nav-item"><a href="sobre_mim.html">Sobre</a></li>
+              <li class="nav-item"><a href="curiosidades.html">Curiosidades</a></li>
+              
+              <li class="nav-item"><a href="matematica_simpsorama.html" id="game">Matemática</a></li>
+    
+            </ul>
+    
+          </nav>
+        </div>
+
+        <div class="procurar">
+            <h2>Procurar por</h2>
+            <input type="text" id="input_pesquisa" onkeyup="pesquisar()">
+        </div>
+
+        <div class="cards">
+            <div id="personagens-container" class="personagens-container"></div>
+        </div>
+</body>
+</html>
+<script>
+      function pesquisar() {
+            const pesquisa = document.getElementById('input_pesquisa').value;
+
+            fetch(`https://apisimpsons.fly.dev/api/personajes/find/${pesquisa}`)
+                .then(response => response.json())
+                .then(data => {
+                    const personagens = data.result;
+                    const personagensContainer = document.getElementById('personagens-container');
+                    personagensContainer.innerHTML = '';
+
+                    for (var  i = 0; i < personagens.length; i++) {
+                        const personagem = personagens[i];
+
+                        const card = document.createElement('div');
+                        card.classList.add('personagem-card');
+
+                        const imagem = document.createElement('img');
+                        const texto = document.createElement('h4')
+                        imagem.src = personagem.Imagen;
+                        imagem.alt = `Imagem do personagem ${personagem.Nombre}`;
+                        texto.innerHTML = `${personagem.Nombre}`
+
+                        card.appendChild(imagem);
+                        card.appendChild(texto)
+
+                        card.addEventListener('click', () => {
+                            exibir(personagem);
+                        });
+
+                        personagensContainer.appendChild(card);
+                    }
+                })
+                .catch(error => {
+                    console.error('Ocorreu um erro:', error);
+                });
+        }
+
+        function exibir(personagem) {
+            Swal.fire({
+                html: `<img src="${personagem.Imagen}" width="150px" alt="Imagem do personagem ${personagem.Nombre}">
+                       <h2>${personagem.Nombre}</h2>
+                       <p>${personagem.Historia}</p>
+                       <h4>Estado: ${personagem.Estado}</h4>
+                       <h4>Ocupação: ${personagem.Ocupacion}</h4>
+                       <h4>Gênero: ${personagem.Genero}</h4>`
+            });
+        }
+    </script>

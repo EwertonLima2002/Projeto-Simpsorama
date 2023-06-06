@@ -11,7 +11,7 @@
     <script src="https://kit.fontawesome.com/3f0399636b.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <script src="../js/funcoes.js"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
    
 </head>
 <body onload="validarSessao(), atualizarFeed()">
@@ -36,7 +36,7 @@
         <i class="fa-solid fa-phone"></i>
      Fale com os Simpsons
     </a>
-    <a href="fale_conosco.html">
+    <a href="loteria_simspsorama.html">
         <i class="fa-solid fa-money-bill-trend-up"></i>
      Loteria Simspsorama
     </a>
@@ -57,7 +57,7 @@
         <h1 class="texto_mural">Mural de Avisos</h1>
         <div class="login">
             <form class="form" id="form_postagem" method="post" onsubmit="return publicar()">
-                <h1>Publicar um aviso</h1>
+                <h1>Opnião Sobre os Simpsons</h1>
                 <div class="form_group">
                     <label for="email" class="sub_title" id="n1">Título:</label>
                     <input type="text" class="form_style" id="titulo" >
@@ -89,7 +89,8 @@
 </html>
 <script>
        b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
-
+        var id=  sessionStorage.ID_USUARIO
+        console.log(id)
     function limparFormulario() {
         document.getElementById("form_postagem").reset();
     }
@@ -114,14 +115,35 @@
             console.log("resposta: ", resposta);
 
             if (resposta.ok) {
-
-                swal("Parabéns", `Post realizado com sucesso pelo usuario de ID:  ${idUsuario}!"` , "success")
+         Swal.fire({
+                                icon: 'success',
+                                background: '#fffff',
+                color: '#151515',
+                                title: 'Bom trabalho!',
+                                text: 'Comentário Adicionado com sucesso',
+                              
+                            })
                 window.location = "fale_conosco.html";
                 limparFormulario();
                 finalizarAguardar();
             } else if (resposta.status == 404) {
-                window.alert("Deu 404!");
+                Swal.fire({
+                                icon: 'error',
+                                background: '#fffff',
+                                 color: '#151515',
+                                title: 'O Erro foi do nosso lado!',
+                                text: 'Falha ao criar o Comentário',
+                              
+                            })
             } else {
+                Swal.fire({
+                                icon: 'error',
+                                background: '#fffff',
+                                 color: '#151515',
+                                title: 'O Erro foi do nosso lado!',
+                                text: 'Falha ao criar o Comentário',
+                              
+                            })
                 throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
             }
         }).catch(function (resposta) {
@@ -141,27 +163,73 @@
 
     }
 
-    function deletar(idaviso) {
-        console.log("Criar função de apagar post escolhido - ID" + idaviso);
-        fetch(`/avisos/deletar/${idaviso}`, {
-            method: "DELETE",
-            headers: {
-                "Content-Type": "application/json"
-            }
-        }).then(function (resposta) {
+    function deletar(idAviso) {
+        console.log("Criar função de apagar post escolhido - ID" + idAviso);
 
-            if (resposta.ok) {
-                swal("Parabéns", `Post deletado com sucesso pelo usuario de email: ${sessionStorage.getItem("EMAIL_USUARIO") }!"` , "success")
-                window.location = "/dashboard/fale_conosco.html"
-            } else if (resposta.status == 404) {
-                window.alert("Deu 404!");
-            } else {
-                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
-            }
-        }).catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
-        });
-    }
+
+
+            Swal.fire({
+                title: 'Você tem certeza que deseja deletar?',
+                background: '#fffff',
+                color: '#151515',
+                showDenyButton: true,
+                showCancelButton: false,
+                confirmButtonText: 'Deletar',
+                denyButtonText: `Não Deletar`,
+                confirmButtonColor: '#FF5555',
+                denyButtonColor:'#424242',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    fetch(`/avisos/deletar/${idAviso}`, {
+                        method: "DELETE",
+                        headers: {
+                            "Content-Type": "application/json"
+                        }
+                    }).then(function (resposta) {
+                        if (resposta.ok) {
+                            Swal.fire('Saved!', '', 'success')
+                            Swal.fire({
+                                icon: 'success',
+                                confirmButtonColor: '#74C365',
+                                background: '#fffff',
+                color: '#151515',
+                                title: 'Bom trabalho!',
+                                text: 'Comentário deletado com sucesso',
+                              
+                            })
+                            document.getElementById('okButton').addEventListener('click', function() {
+          Swal.close();
+          location.reload();
+         });
+                            window.location = "cadastrar-usuario.html";
+                        } else {
+                         
+                            Swal.fire({
+                                icon: 'error',
+                                background: '#fffff',
+                                 color: '#151515',
+                                title: 'O Erro foi do nosso lado!',
+                                text: 'Falha ao deletar o Comentário',
+                              
+                            })
+                        }
+                    }).catch(function (resposta) {
+                        console.log(resposta);
+                    });
+                } else if (result.isDenied) {
+                    Swal.fire({
+                                icon: 'warning',
+                                background: '#fffff',
+                color: '#151515',
+                                title: 'Bom trabalho!',
+                                text: 'Comentário não deletado',
+                                confirmButtonColor: '#4CAF50'
+                            })
+                
+                }
+            });
+        }
+    
 
     function atualizarFeed() {
         //aguardar();
@@ -194,7 +262,7 @@
                         var btnDeletar = document.createElement("button");
 
 
-                        spanID.innerHTML = "ID: <b>" + publicacao.idaviso + "</b> <br>"; 
+                        spanID.innerHTML = "ID: <b>" + publicacao.id + "</b> <br>"; 
                         spanTitulo.innerHTML = "<br>Título: <b>" + publicacao.titulo + "</b>"; 
                         spanNome.innerHTML = "Autor: <b>" + publicacao.nome + "</b>"; 
                         divDescricao.innerHTML = "Descrição: <b>" + publicacao.descricao + "</b>";
@@ -210,12 +278,12 @@
                         divButtons.className = "div-buttons"
 
                         btnEditar.className = "publicacao-btn-editar"
-                        btnEditar.id = "btnEditar" + publicacao.idaviso;
-                        btnEditar.setAttribute("onclick", `editar(${publicacao.idaviso})`);
+                        btnEditar.id = "btnEditar" + publicacao.id;
+                        btnEditar.setAttribute("onclick", `alterar(${publicacao.id})`);
 
-                        btnDeletar.className = "publicacao-btn-editar"
-                        btnDeletar.id = "btnDeletar" + publicacao.idaviso;
-                        btnDeletar.setAttribute("onclick", `deletar(${publicacao.idaviso})`);
+                        btnDeletar.className = "publicacao-btn-deletar"
+                        btnDeletar.id = "btnDeletar" + publicacao.id;
+                        btnDeletar.setAttribute("onclick", `deletar(${publicacao.id})`);
 
                         divPublicacao.appendChild(spanID);
                         divPublicacao.appendChild(spanNome);
@@ -252,5 +320,135 @@
 
         return false;
     }
+
+
+function alterar(id){
+    
+    
+   Swal.fire({
+            title: '<span class="titulo">Editar Publicação</span>',
+            html: `
+          <div class="div_crud_alterar">
+            
+            <input type="text" id="input_titulo" onkeyup="validar_titulo()" placeholder="Titulo" />
+          </div>
+          <div class="div_crud_alterar">
+            <input type="email" id="input_descricao" onkeyup="validar_descicao()" placeholder="Descrição" />
+          </div>
+         
+        `,
+        background: '#fff',
+            color: '#FFF',
+            showCancelButton: true,
+            confirmButtonText: 'Alterar',
+            cancelButtonText: 'Cancelar',
+            confirmButtonColor: '#74C365',
+            cancelButtonColor: '#FF5555',
+            preConfirm: () => {
+                var titulo = document.getElementById('input_titulo').value;
+                var descricao = document.getElementById('input_descricao').value;
+
+                alterarComentario(id);
+            }
+        });
+
+         }
+        function validar_titulo(){
+            var input_titulo = document.getElementById('input_titulo')
+            var titulo = input_titulo.value
+
+            if(titulo == ""){
+                input_titulo.classList.remove('correto');
+                input_titulo.classList.add('erro');
+                input_titulo.placeholder = 'Campo vazio';
+            }
+            else if(titulo.length < 3){
+                input_titulo.classList.remove('correto');
+                input_titulo.classList.add('erro');
+                input_titulo.placeholder = 'Campo vazio';
+            }
+            else{
+                input_titulo.classList.remove('erro');
+                input_titulo.classList.add('correto');
+                input_titulo.placeholder = 'Campo vazio';
+            }
+        }
+
+        function validar_descicao(){
+            var input_descricao = document.getElementById('input_descricao')
+            var descricao = input_descricao.value
+            
+            if(descricao == ""){
+                input_descricao.classList.remove('correto');
+                input_descricao.classList.add('erro');
+                input_descricao.placeholder = 'Campo vazio';
+            }
+            else if(descricao.length >= 255){
+                input_descricao.classList.remove('correto');
+                input_descricao.classList.add('erro');
+                input_descricao.placeholder = 'Campo vazio';
+            }
+            else{
+                input_descricao.classList.remove('erro');
+                input_descricao.classList.add('correto');
+                input_descricao.placeholder = 'Campo vazio';
+            }
+        }
+        function alterarComentario(id){
+            var input_titulo = document.getElementById('input_titulo')
+            var input_descricao = document.getElementById('input_descricao')
+            var titulo = input_titulo.value
+            var descricao = input_descricao.value
+
+            if (titulo == "" || descricao == "") {
+
+                input_titulo.classList.remove('correto');
+                input_descricao.classList.remove('correto');
+                input_descricao.classList.add('erro');
+                input_titulo.classList.add('erro');
+                input.placeholder = 'Campo vazio';
+}
+             else if (titulo.length < 3 || descricao >=255) {
+                input_titulo.classList.remove('correto');
+                input_descricao.classList.remove('correto');
+                input_descricao.classList.add('erro');
+                input_titulo.classList.add('erro');
+                input.placeholder = 'Campo vazio';
+}
+else {
+fetch(`/avisos/editar_publicacao/${sessionStorage.getItem("ID_POSTAGEM_EDITANDO")}`, {
+    method: "PUT",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+        tituloSever: titulo,
+        descricaoServer: descricao,
+        idSever: id
+    })
+}).then(function (resposta) {
+
+    if (resposta.ok) {
+        Swal.fire({
+            icon: 'success',
+            title: 'Bom trabalho!',
+            text: 'Publicação Atualizada com sucesso',
+            showConfirmButton: false,
+        })
+        document.getElementById('okButton').addEventListener('click', function () {
+            Swal.close();
+        });
+        window.location = "cadastrar-usuario.html"
+    } else if (resposta.status == 404) {
+        window.alert("Deu 404!");
+    } else {
+        throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+    }
+}).catch(function (resposta) {
+    console.log(`#ERRO: ${resposta}`);
+});
+}
+
+        }
 
 </script>

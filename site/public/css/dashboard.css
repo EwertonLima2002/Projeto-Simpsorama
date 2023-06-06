@@ -25,8 +25,9 @@
     background: linear-gradient(-45deg,	#FFD700 ,	 	#FFD700);
   }
 aside{
-    color: #fff;
+    color: black;
     width: 300px;
+    padding-top: 50px;
     padding-left: 20px;
     height: 100vh;
     background:linear-gradient(-65deg , 	#FFD700 ,	 	#FFD700);
@@ -34,7 +35,7 @@ aside{
 }
 aside a{
     font-size: 12px;
-    color: #fff;
+    color: black;
     display: block;
     padding: 12px;
     padding-left: 30px;
@@ -169,7 +170,7 @@ input:checked * .slider::before{
     left: 350px;
 }
 .texto_votacao{
-  color: #fff;
+  color: black;
   position: absolute;
   top: 20px;
   left: 550px;
@@ -180,11 +181,11 @@ input:checked * .slider::before{
     left: 590px;
 }
 .votos_homer_simpson h3{
-    color: #FFA500;
+    color:#FF8C00 ;
     font-size: 15px;
 }
 .votos_homer_simpson p{
-    color: #FFA500;
+    color: #FF8C00 ;
     position: relative;
     top: -20px;
     font-size: 13px;
@@ -195,11 +196,11 @@ input:checked * .slider::before{
     left: 380px;
 }
 .votos_lisa_simpson h3{
-    color: #FFA500;
+    color: #FF8C00 ;
     font-size: 15px;
 }
 .votos_lisa_simpson p{
-    color: #FFA500;
+    color: #FF8C00 ;
     position: relative;
     top: -20px;
     font-size: 13px;
@@ -210,48 +211,48 @@ input:checked * .slider::before{
     left: 815px;
 }
 .votos_marge_simpson h3{
-    color: #FFA500;
+    color: #FF8C00 ;
     font-size: 15px;
 }
 .votos_marge_simpson p{
-    color: #FFA500;
+    color: #FF8C00 ;
     position: relative;
     top: -20px;
     font-size: 13px;
 }
 .votos_bart_simpson{
-    color: #FFA500;
+    color: #FF8C00 ;
     margin-top: -550px;
     margin-left: 1015px;
 }
 .votos_bart_simpson h3{
-    color: #FFA500;
+    color: #FF8C00 ;
     font-size: 15px;
 }
 .votos_bart_simpson p{
-    color: #FFA500;
+    color: #FF8C00 ;
     position: relative;
     top: -20px;
     font-size: 14px;
 }
 .votos_maggie_simpson{
-    color: #FFA500;
+    color: #FF8C00 ;
     margin-top: -160px;
     margin-left: 1215px;
 }
 .votos_maggie_simpson h3{
-    color: #FFA500;
+    color: #FF8C00 ;
     font-size: 15px;
 }
 .votos_maggie_simpson p{
-    color: #FFA500;
+    color: #FF8C00 ;
     position: relative;
     top: -20px;
     font-size: 14px;
 }
 .grafico{
     position: absolute;
-    top: 180px;
+    top: 150px;
     left: 300px;
 }
 .mais_votado{
@@ -273,7 +274,7 @@ input:checked * .slider::before{
     width: 80px;
     height: 130px;
     margin: 0 auto;
-    top: -80px;
+    top: -140px;
     left: 580px;
 }
 
@@ -873,7 +874,7 @@ input:checked * .slider::before{
     height: 133px;
     margin: 0 auto;
     left: 380px;
-    top: 200px;
+    top: 90px;
 }
 
 #homer .head *
@@ -1456,8 +1457,8 @@ input:checked * .slider::before{
     position: relative;
     width: 140px;
     height: 205px;
-    margin: 0 auto;
-    left: 600px;
+    margin-top: -100px;
+    left: 675px;
 }
 
 #marge .head *
@@ -2456,7 +2457,7 @@ input:checked * .slider::before{
     height: 120px;
     margin: 0 auto;
     left: -60px;
-    top: 40px;
+    top: -40px;
 }
 
 #lisa .head *
@@ -3823,3 +3824,99 @@ input:checked * .slider::before{
     -ms-transform: rotate(-5deg);
     -webkit-transform: rotate(-5deg);
 }
+.img_aside{
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 230px;
+  }
+
+  
+.balao {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    bottom: -50px;
+    background-color: #fff;
+    animation: subir 5s ease-in-out infinite;
+  }
+  
+  @keyframes subir {
+    0% {
+      bottom: -50px;
+      transform: translateX(0);
+    }
+    50% {
+      bottom: 50%;
+      transform: translateX(50px);
+    }
+    100% {
+      bottom: 100%;
+      transform: translateX(0);
+    }
+  }
+  
+  .balao:nth-child(1) {
+    left: 10%;
+    animation-delay: 0s;
+    background-color: rgba(72, 255, 88, 0.993);
+  }
+  
+  .balao:nth-child(2) {
+    left: 30%;
+    animation-delay: 2s;
+    background-color: #00bfff;
+  }
+  
+  .balao:nth-child(3) {
+    left: 50%;
+    animation-delay: 4s;
+    background-color: #ff0000;
+  }
+  
+  .balao:nth-child(4) {
+    left: 70%;
+    animation-delay: 6s;
+    background-color: #be1bff;
+  }
+  
+  .balao:nth-child(5) {
+    left: 90%;
+    animation-delay: 8s;
+    background-color: #d8f000;
+  }
+  
+  .balao:nth-child(6) {
+    left: 75%;
+    animation-delay: 7s;
+    background-color: #5400f0;
+  }
+  
+  .balao:nth-child(7) {
+    left: 65%;
+    animation-delay: 8s;
+    background-color: #1cf000;
+  }
+  .balao:nth-child(8) {
+    left: 80%;
+    animation-delay: 10s;
+    background-color: #f000a0;
+  }
+  
+  .balao:nth-child(9) {
+    left: 20%;
+    animation-delay: 9s;
+    background-color: #00f0a0;
+  }
+  
+  .balao:nth-child(10) {
+    left: 35%;
+    animation-delay: 8s;
+    background-color: #8400f0;
+  }
+  .balao:nth-child(11) {
+    left: 10%;
+    animation-delay: 10s;
+    background-color: #ec019e;
+  }
