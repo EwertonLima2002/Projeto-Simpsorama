@@ -274,7 +274,7 @@ input:checked * .slider::before{
     width: 80px;
     height: 130px;
     margin: 0 auto;
-    top: -140px;
+    top: -180px;
     left: 580px;
 }
 

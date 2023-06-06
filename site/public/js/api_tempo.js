@@ -1,100 +1,71 @@
-const apiKey = "ba605efc18f1572f61892fe426f18a1a";
-const apiCountryURL = "http://www.w3.org/2001/XMLSchema-instance";
-const apiUnsplash = "https://source.unsplash.com/1600x900/?";
+const chave_api = "ba605efc18f1572f61892fe426f18a1a";
 
+const input_cidade = document.querySelector("#input_cidade");
+const pesquisar = document.querySelector("#search");
+const nome_cidade = document.querySelector("#cidade");
+const elemento_temperatura = document.querySelector("#temperature span");
+const descricao_temperatura = document.querySelector("#description");
+const icone_tempo = document.querySelector("#img_temperatura");
+const elemento_umidade = document.querySelector("#umidity span");
+const velocidade_do_veto = document.querySelector("#wind span");
+const temperatura_fahehaint = document.getElementById('fahenhatint')
 
-const cityInput = document.querySelector("#city-input");
-const searchBtn = document.querySelector("#search");
+const informacao_temperatura = document.querySelector("#weather-data");
+const mensagem_de_erro_api = document.querySelector("#error-message");
+const carregar = document.querySelector("#loader");
 
-const cityElement = document.querySelector("#city");
-const tempElement = document.querySelector("#temperature span");
-const descElement = document.querySelector("#description");
-const weatherIconElement = document.querySelector("#weather-icon");
-const countryElement = document.querySelector("#country");
-const umidityElement = document.querySelector("#umidity span");
-const windElement = document.querySelector("#wind span");
-const temp = document.getElementById('fahenhatint')
-
-
-const weatherContainer = document.querySelector("#weather-data");
-
-const errorMessageContainer = document.querySelector("#error-message");
-const loader = document.querySelector("#loader");
-
-const suggestionContainer = document.querySelector("#suggestions");
-const suggestionButtons = document.querySelectorAll("#suggestions button");
-const temperaturaf = document.querySelectorAll("#fahrenheit")
-// Loader
-const toggleLoader = () => {
-  loader.classList.toggle("hide");
+const funcao_carregamento = () => {
+  carregar.classList.toggle("hide");
 };
 
-const getWeatherData = async (city) => {
-  toggleLoader();
+const obterdadosclima = (cidade) => {
+  funcao_carregamento();
 
-  const apiWeatherURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}&lang=pt_br`;
 
-  const res = await fetch(apiWeatherURL);
-  const data = await res.json();
-
-  toggleLoader();
-
-  return data;
+  return fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cidade}&units=metric&appid=${chave_api}&lang=pt_br`)
+    .then(response => response.json())
+    .finally(funcao_carregamento);
 };
 
 const mensagem_de_erro = () => {
-  errorMessageContainer.classList.remove("hide");
+  mensagem_de_erro_api.classList.remove("hide");
 };
 
 const informacoes_temperatura = () => {
-  errorMessageContainer.classList.add("hide");
-  weatherContainer.classList.add("hide");
-
-  suggestionContainer.classList.add("hide");
+  mensagem_de_erro_api.classList.add("hide");
+  informacao_temperatura.classList.add("hide");
 };
 
-const showWeatherData = async (city) => {
+const showWeatherData = () => {
+  const cidade = input_cidade.value;
+
   informacoes_temperatura();
 
-  const data = await getWeatherData(city);
+  obterdadosclima(cidade)
+    .then(data => {
+      if (data.cod === "404") {
+        mensagem_de_erro();
+        return;
+      }
 
-  if (data.cod === "404") {
-    mensagem_de_erro();
-    return;
-  }
+      div_cidade.innerHTML = data.name;
+      elemento_temperatura.innerHTML = parseInt(data.main.temp);
+      descricao_temperatura.innerHTML = data.weather[0].description;
+      var farehaint = parseInt(data.main.temp * 1.8) + 32;
+      farehaint = farehaint.toFixed(1);
+      temperatura_fahehaint.innerHTML = `${farehaint}°F`;
 
-  cityElement.innerText = data.name;
-  tempElement.innerText = parseInt(data.main.temp);
-  descElement.innerText = data.weather[0].description;
-  temp.innerText = (parseInt(data.main.temp)* 1.8) + 32 +  '°F'
-  
- 
-  weatherIconElement.setAttribute(
-    "src",
-    `http://openweathermap.org/img/wn/${data.weather[0].icon}.png`
-  );
-  countryElement.setAttribute("src", apiCountryURL + data.sys.country);
-  umidityElement.innerText = `${data.main.humidity}%`;
-  windElement.innerText = `${data.wind.speed}km/h`;
+      imagem.innerHTML = `<img src="http://openweathermap.org/img/wn/${data.weather[0].icon}.png">`
+      elemento_umidade.innerHTML = `${data.main.humidity}%`;
+      velocidade_do_veto.innerHTML = `${data.wind.speed}km/h`;
 
-  
-
-  weatherContainer.classList.remove("hide");
+      informacao_temperatura.classList.remove("hide");
+    })
+    .catch(error => {
+      console.error("Amigo deu erro aqui :", error);
+    });
 };
 
-searchBtn.addEventListener("click", async (e) => {
-  e.preventDefault();
-
-  const city = cityInput.value;
-
-  showWeatherData(city);
+pesquisar.addEventListener("click", () => {
+  showWeatherData();
 });
-
-cityInput.addEventListener("keyup", (e) => {
-  if (e.code === "Enter") {
-    const city = e.target.value;
-
-    showWeatherData(city);
-  }
-});
-
