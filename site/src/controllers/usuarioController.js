@@ -24,7 +24,7 @@ function listar(req, res) {
         );
 }
 
-function entrar(req, res) {
+function autenticar(req, res) {
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
 
@@ -34,7 +34,7 @@ function entrar(req, res) {
         res.status(400).send("Sua senha está indefinida!");
     } else {
         
-        usuarioModel.entrar(email, senha)
+        usuarioModel.autenticar(email, senha)
             .then(
                 function (resultado) {
                     console.log(`\nResultados encontrados: ${resultado.length}`);
@@ -192,7 +192,7 @@ function procurar_favorito(req, res) {
 
 
 module.exports = {
-    entrar,
+    autenticar,
     cadastrar,
     listar,
     testar,

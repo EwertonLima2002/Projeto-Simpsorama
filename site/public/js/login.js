@@ -70,7 +70,7 @@ function login() {
     }
     else {
         setInterval('...', 5000)
-    }
+   
 
     console.log("FORM LOGIN: ", emailVar);
     console.log("FORM SENHA: ", senhaVar);
@@ -120,7 +120,7 @@ function login() {
 
     return false;
 }
-
+}
 //function sumirMensagem() {
   //  cardErro.style.display = "none"
 // }

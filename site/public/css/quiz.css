@@ -334,10 +334,31 @@ input:focus{
   text-align: center;
   font-size: 20px;
   color: #FFD700;
+  position: absolute;
+  top: 10px;
+  left: 30px;
 }
 .img_aside{
   position: absolute;
   left: 0;
   top: 10px;
   width: 230px;
+}
+.reiniciar{
+  display: flex;
+  justify-content: end;
+  align-items: end;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+.reiniciar button{
+  margin: 10px;
+  width: 150px;
+  height: 30px;
+  border-radius: 30px;
+  border: none;
+  background-color: #FFD700;
+  color: #ffff;
+  font-size: 18px;
+  font-weight: 500; 
 }

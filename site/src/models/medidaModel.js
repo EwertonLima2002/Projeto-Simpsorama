@@ -52,7 +52,7 @@ function buscar_maior_pontuacao(idAquario) {
 function maior_voto(idUsuario) {
     console.log("ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
     var instrucao = `
-    select p.nome as nome, COUNT(*) AS maior_voto
+    select p.nome as nome, count(*) AS maior_voto
 from usuario as u
 join personagem as p on u.fkpersonagem = p.idpersonagem
 group by u.fkpersonagem

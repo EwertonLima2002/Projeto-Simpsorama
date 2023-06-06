@@ -11,7 +11,7 @@
   #game{
     margin: 12px;
   }
-  /* HEADINGS */
+
   
   
   
@@ -27,7 +27,7 @@
     margin-bottom: 10px;
   }
   
-  /* BASIC SETUP */
+
   
   .page-wrapper {
     width: 100%;
@@ -36,7 +36,7 @@
   
   .nav-wrapper {
     width: 100%;
-    position: -webkit-sticky; /* Safari */
+    position: -webkit-sticky; 
     position: sticky;
     top: 0;
     background-color: #fff;
@@ -52,7 +52,7 @@
       animation: gradbar 15s ease infinite;
   }
   
-  /* NAVIGATION */
+
   
   .navbar {
     display: grid;
@@ -117,7 +117,7 @@
     color: yellow;
   }
   
-  /* SEARCH FUNCTION */
+
   
   #search-icon {
     font-size: 0.9rem;
@@ -168,8 +168,7 @@
     cursor: pointer;
   }
   
-  /* KEYFRAME ANIMATIONS */
-  
+
   @-webkit-keyframes gradbar {
       0% {
           background-position: 0% 50%
@@ -204,21 +203,6 @@
       100% {
           background-position: 0% 50%
       }
-  }
-  
-  /* Media Queries */
-  
-    /* Mobile Devices - Phones/Tablets */
-  
-  @media only screen and (max-width: 720px) { 
-    .features {
-      flex-direction: column;
-      padding: 50px;
-    }
-    
-  
-    
-    
   }
 
   .banner{
@@ -293,4 +277,7 @@
   font-size: 20px;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 
+}
+.texto{
+  color: #000;
 }

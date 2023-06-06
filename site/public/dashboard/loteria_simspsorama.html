@@ -86,6 +86,12 @@
                     </div>
 
                     <div class="grafico" style="display: none;" id="mostrar_grafico">
+                        <div class="reiniciar">
+
+                            <button onclick="reiniciar()">
+                                Reiniciar
+                            </button>
+                        </div>
                         <h4>Media de Acertos</h4>
                         <canvas id="myChartCanvas1" width="400px" height="230px"></canvas>
                     </div>
@@ -114,7 +120,20 @@
     console.log(idUsuario)
 
     b_usuario.innerHTML = " " + usuario
-
+    function reiniciar() {
+  Swal.fire({
+    imageUrl: 'https://i.pinimg.com/originals/4c/32/2c/4c322c3c36e66cbb7fcc68587a0eab3b.png',
+    imageHeight: 250,
+    imageWidth: 250,
+    imageAlt: 'A tall image',
+    text: 'Jogo Reiniciado!',
+    confirmButtonText: 'OK',
+  }).then((result) => {
+    if (result.isConfirmed) {
+      location.reload(true);
+    }
+  });
+}
     function gerar_aleatorios() {
         var n1 = parseInt(Math.random() * 6 + 1)
         var n2 = parseInt(Math.random() * ((20 - 10) + 1) + 10)
