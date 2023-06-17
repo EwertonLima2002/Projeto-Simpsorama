@@ -23,6 +23,4 @@ Site construido para o primeiro semestre de 2023 da faculdade SPTECH
 
 #
 
-- 📌 Em progresso.
-- 🛠 Site responsivo criado sem uso de frameworks. Totalmente feito em HTML, CSS e JS puro.
-- 🔗 sem link no momento
+- 📌 Finalizado.
